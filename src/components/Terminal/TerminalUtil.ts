@@ -42,7 +42,7 @@ export const EraseCommandUtil = (props: TerminalProps) => {
         return;
       }
 
-      print(`File ${arg} selected`);
+      print(`File ${arg} erased`);
       props.onErase(arg);
     },
     options: [
