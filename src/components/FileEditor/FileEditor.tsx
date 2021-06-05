@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button, Col, FormControlProps, Row } from "react-bootstrap";
-import { FileEarmarkPlusFill, Trash } from "react-bootstrap-icons";
+import { EraserFill } from "react-bootstrap-icons";
 import { IFile } from "../../types";
 import { fileTypes } from "../../util";
 import NewFileModal from "../NewFileModal/NewFileModal";
@@ -11,7 +11,7 @@ interface FileEditorProps {
   fileList: string[];
   selectedFile: string;
   onSelect: (file: string) => void;
-  onDelete: (file: string) => void;
+  onErase: (file: string) => void;
 }
 
 const FileEditor: React.FC<FileEditorProps> = (props) => {
@@ -84,11 +84,8 @@ const FileEditor: React.FC<FileEditorProps> = (props) => {
     <>
       <h5 className="mb-4">FILES</h5>
       <Row className="mb-4">
-        <Col>
-          <Button onClick={handleShow}>
-            <FileEarmarkPlusFill className="px-1" size={24} />
-            New File
-          </Button>
+        <Col className="d-flex justify-content-between align-items-center">
+          <Button onClick={handleShow}>New File</Button>
           <NewFileModal
             show={show}
             name={file.name}
@@ -109,10 +106,9 @@ const FileEditor: React.FC<FileEditorProps> = (props) => {
           >
             <Col className="d-flex justify-content-between align-items-center">
               {file}
-              <Trash
-                className={styles.deleteBtn}
-                style={{ cursor: "pointer" }}
-                onClick={() => props.onDelete(file)}
+              <EraserFill
+                className={styles.clearBtn}
+                onClick={() => props.onErase(file)}
               />
             </Col>
           </Row>

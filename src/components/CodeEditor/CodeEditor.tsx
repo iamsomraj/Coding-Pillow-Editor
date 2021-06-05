@@ -60,21 +60,11 @@ const CodeEditor: React.FC = () => {
     setFiles(currFiles);
   };
 
-  const deleteFileHandler = (fileName: string) => {
+  const eraseFileHandler = (fileName: string) => {
     if (!fileName) return;
 
     const currFiles = { ...files };
-    delete currFiles[fileName];
-    for (const key in files) {
-      if (Object.prototype.hasOwnProperty.call(files, key)) {
-        const element = files[key];
-        if (element.name !== fileName) {
-          console.log(element);
-          setCurrentFile(element);
-          break;
-        }
-      }
-    }
+    currFiles[fileName].value = "";
     setFiles(currFiles);
   };
 
@@ -86,7 +76,7 @@ const CodeEditor: React.FC = () => {
             selectedFile={currentFile.name}
             onAdd={addFileHandler}
             onSelect={selectFileHandler}
-            onDelete={deleteFileHandler}
+            onErase={eraseFileHandler}
             fileList={fileNames}
           />
         </Col>

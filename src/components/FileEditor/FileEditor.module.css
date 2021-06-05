@@ -1,8 +1,8 @@
-.deleteBtn {
+.clearBtn {
   cursor: pointer;
 }
 
-.deleteBtn:hover,
-.deleteBtn:active {
+.clearBtn:hover,
+.clearBtn:active {
   color: #fa3232;
 }
