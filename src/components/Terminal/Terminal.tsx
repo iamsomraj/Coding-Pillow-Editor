@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import ReactTerminal from "terminal-in-react";
 import { IFiles } from "../../types";
 import {

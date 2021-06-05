@@ -45,9 +45,11 @@ const CodeEditor: React.FC = () => {
    * @param file
    */
   const addFileHandler = (file: IFile) => {
-    const currFiles = { ...files };
-    currFiles[file.name] = file;
-    setFiles(currFiles);
+    if (file && file.name) {
+      const currFiles = { ...files };
+      currFiles[file.name.trim()] = file;
+      setFiles(currFiles);
+    }
   };
 
   /**

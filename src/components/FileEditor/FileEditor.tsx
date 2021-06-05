@@ -50,10 +50,10 @@ const FileEditor: React.FC<FileEditorProps> = (props) => {
    */
   const saveBtnHandler: React.FormEventHandler<HTMLElement> = (event) => {
     event.preventDefault();
-    if (props.fileList.includes(file.name)) {
+    if (props.fileList.includes(file.name.trim())) {
       return;
     }
-    props.onAdd(file);
+    props.onAdd({ ...file, name: file.name.trim() });
     handleClose();
   };
 
