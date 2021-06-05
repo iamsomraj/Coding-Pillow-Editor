@@ -15,12 +15,18 @@ interface FileEditorProps {
 const FileEditor: React.FC<FileEditorProps> = (props) => {
   const [show, setShow] = useState(false);
 
+  /**
+   * @description: input file state
+   */
   const [file, setFile] = useState<IFile>({
     name: "",
     language: "",
     value: "",
   });
 
+  /**
+   * @description: Initializes the input form
+   */
   const initForm = () => {
     setFile({
       name: "",
@@ -35,6 +41,11 @@ const FileEditor: React.FC<FileEditorProps> = (props) => {
   };
   const handleShow = () => setShow(true);
 
+  /**
+   * @description: Handles file creation and adds the file to file list
+   * @param event
+   * @returns void
+   */
   const saveBtnHandler: React.MouseEventHandler<HTMLElement> = (event) => {
     event.preventDefault();
     if (props.fileList.includes(file.name)) {
@@ -44,6 +55,10 @@ const FileEditor: React.FC<FileEditorProps> = (props) => {
     handleClose();
   };
 
+  /**
+   * @description Handles input form and determines language from file name
+   * @param event
+   */
   const inputChangeHandler: FormControlProps["onChange"] = (event) => {
     const fileDetail = event.target.value.split(".");
     const fileExt = fileDetail[fileDetail.length - 1];
@@ -90,7 +105,7 @@ const FileEditor: React.FC<FileEditorProps> = (props) => {
             }`}
             onClick={() => props.onSelect(file)}
           >
-            <Col>
+            <Col className="d-flex justify-content-between align-items-center">
               {file}
               <Trash style={{ cursor: "pointer" }} />
             </Col>
