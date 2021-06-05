@@ -81,16 +81,20 @@ const CodeEditor: React.FC = () => {
           />
         </Col>
         <Col className="my-4" md={8}>
-          {currentFile && (
-            <Editor
-              height={editorConfig.height}
-              theme={editorConfig.theme}
-              onChange={editorChangeHandler}
-              path={currentFile.name}
-              language={currentFile.language}
-              value={currentFile.value}
-            />
-          )}
+          <Row className="m-2">
+            {currentFile && (
+              <Editor
+                height={editorConfig.height}
+                theme={editorConfig.theme}
+                onChange={editorChangeHandler}
+                path={currentFile.name}
+                language={currentFile.language}
+                value={currentFile.value}
+              />
+            )}
+          </Row>
+          <Row className="m-2">
+          </Row>
         </Col>
         <Col className="my-4" md={2}>
           PREVIEW
