@@ -1,0 +1,8 @@
+.deleteBtn {
+  cursor: pointer;
+}
+
+.deleteBtn:hover,
+.deleteBtn:active {
+  color: #fa3232;
+}

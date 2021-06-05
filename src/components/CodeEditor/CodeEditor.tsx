@@ -18,7 +18,7 @@ const CodeEditor: React.FC = () => {
    * @description: stores current selected file
    */
   const [selectedFile, setSelectedFile] = useState("script.js");
-  const currentFile = files[selectedFile];
+  const [currentFile, setCurrentFile] = useState<IFile>(files[selectedFile]);
 
   /**
    *  @type: string[]
@@ -34,6 +34,7 @@ const CodeEditor: React.FC = () => {
    */
   const selectFileHandler = (file: string) => {
     setSelectedFile(file);
+    setCurrentFile(files[file]);
   };
 
   /**
@@ -61,26 +62,37 @@ const CodeEditor: React.FC = () => {
     setFiles(currFiles);
   };
 
+  const deleteFileHandler = (fileName: string) => {
+    if (!fileName) return;
+
+    const currFiles = { ...files };
+    delete currFiles[fileName];
+    setFiles(currFiles);
+  };
+
   return (
     <>
       <Row className="my-3">
         <Col className="my-4" md={2}>
           <FileEditor
-            onAdd={addFileHandler}
-            fileList={fileNames}
             selectedFile={selectedFile}
+            onAdd={addFileHandler}
             onSelect={selectFileHandler}
+            onDelete={deleteFileHandler}
+            fileList={fileNames}
           />
         </Col>
         <Col className="my-4" md={8}>
-          <Editor
-            height={editorConfig.height}
-            theme={editorConfig.theme}
-            onChange={editorChangeHandler}
-            path={currentFile.name}
-            defaultLanguage={currentFile.language}
-            defaultValue={currentFile.value}
-          />
+          {currentFile && (
+            <Editor
+              height={editorConfig.height}
+              theme={editorConfig.theme}
+              onChange={editorChangeHandler}
+              path={currentFile.name}
+              defaultLanguage={currentFile.language}
+              defaultValue={currentFile.value}
+            />
+          )}
         </Col>
         <Col className="my-4" md={2}>
           PREVIEW

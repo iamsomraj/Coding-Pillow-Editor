@@ -3,13 +3,15 @@ import { Button, Col, FormControlProps, Row } from "react-bootstrap";
 import { FileEarmarkPlusFill, Trash } from "react-bootstrap-icons";
 import { IFile } from "../../types";
 import { fileTypes } from "../../util";
-import NewFileModal from "./NewFileModal/NewFileModal";
+import NewFileModal from "../NewFileModal/NewFileModal";
+import styles from "./FileEditor.module.css";
 
 interface FileEditorProps {
   onAdd: (file: IFile) => void;
   fileList: string[];
   selectedFile: string;
   onSelect: (file: string) => void;
+  onDelete: (file: string) => void;
 }
 
 const FileEditor: React.FC<FileEditorProps> = (props) => {
@@ -107,7 +109,11 @@ const FileEditor: React.FC<FileEditorProps> = (props) => {
           >
             <Col className="d-flex justify-content-between align-items-center">
               {file}
-              <Trash style={{ cursor: "pointer" }} />
+              <Trash
+                className={styles.deleteBtn}
+                style={{ cursor: "pointer" }}
+                onClick={() => props.onDelete(file)}
+              />
             </Col>
           </Row>
         );
