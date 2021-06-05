@@ -47,7 +47,19 @@ const CodeEditor: React.FC = () => {
     setFiles(currFiles);
   };
 
-  const editorChangeHandler: OnChange = (value, event) => {};
+  /**
+   *
+   * @description Updating file content of the selected file
+   * @param enteredValue
+   * @returns void
+   */
+  const editorChangeHandler: OnChange = (enteredValue) => {
+    if (!enteredValue) return;
+
+    const currFiles = { ...files };
+    currFiles[selectedFile].value = enteredValue;
+    setFiles(currFiles);
+  };
 
   return (
     <>

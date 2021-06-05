@@ -85,7 +85,9 @@ const FileEditor: React.FC<FileEditorProps> = (props) => {
         return (
           <Row
             key={file}
-            className="my-1 py-1 bg-secondary rounded"
+            className={`my-1 p-1 ${
+              props.selectedFile === file ? "bg-primary" : "bg-secondary"
+            }`}
             onClick={() => props.onSelect(file)}
           >
             <Col>
