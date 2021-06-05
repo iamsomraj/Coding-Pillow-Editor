@@ -48,7 +48,7 @@ const FileEditor: React.FC<FileEditorProps> = (props) => {
    * @param event
    * @returns void
    */
-  const saveBtnHandler: React.MouseEventHandler<HTMLElement> = (event) => {
+  const saveBtnHandler: React.FormEventHandler<HTMLElement> = (event) => {
     event.preventDefault();
     if (props.fileList.includes(file.name)) {
       return;

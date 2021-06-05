@@ -4,7 +4,7 @@ interface NewFileModalProps {
   show: boolean;
   name: string;
   onChange: FormControlProps["onChange"];
-  onSave: React.MouseEventHandler<HTMLElement>;
+  onSave: React.FormEventHandler<HTMLFormElement>;
   handleClose: () => void;
 }
 
@@ -15,7 +15,7 @@ const NewFileModal: React.FC<NewFileModalProps> = (props) => {
         <Modal.Title>Create New File</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form>
+        <Form onSubmit={props.onSave}>
           <Form.Group>
             <Form.Label>File Name</Form.Label>
             <Form.Control
@@ -29,14 +29,12 @@ const NewFileModal: React.FC<NewFileModalProps> = (props) => {
               File name should contain it's extension
             </Form.Text>
           </Form.Group>
+          <Button type="submit">Create</Button>
         </Form>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={props.handleClose}>
           Close
-        </Button>
-        <Button variant="primary" onClick={props.onSave}>
-          Save Changes
         </Button>
       </Modal.Footer>
     </Modal>
