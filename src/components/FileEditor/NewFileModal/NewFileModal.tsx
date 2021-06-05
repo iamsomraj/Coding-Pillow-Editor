@@ -1,14 +1,9 @@
-import { Button, Form, Modal } from "react-bootstrap";
-
-type FormControlElement =
-  | HTMLInputElement
-  | HTMLSelectElement
-  | HTMLTextAreaElement;
+import { Button, Form, Modal, FormControlProps } from "react-bootstrap";
 
 interface NewFileModalProps {
   show: boolean;
   name: string;
-  onChange: React.ChangeEventHandler<FormControlElement>;
+  onChange: FormControlProps["onChange"];
   onSave: React.MouseEventHandler<HTMLElement>;
   handleClose: () => void;
 }

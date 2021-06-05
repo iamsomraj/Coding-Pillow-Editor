@@ -1,15 +1,18 @@
 import { useState } from "react";
-import { Button, Col, Row } from "react-bootstrap";
-import { FileEarmarkPlusFill } from "react-bootstrap-icons";
+import { Button, Col, FormControlProps, Row } from "react-bootstrap";
+import { FileEarmarkPlusFill, Trash } from "react-bootstrap-icons";
 import { IFile } from "../../types";
+import { fileTypes } from "../../util";
 import NewFileModal from "./NewFileModal/NewFileModal";
 
-type FormControlElement =
-  | HTMLInputElement
-  | HTMLSelectElement
-  | HTMLTextAreaElement;
+interface FileEditorProps {
+  onAdd: (file: IFile) => void;
+  fileList: string[];
+  selectedFile: string;
+  onSelect: (file: string) => void;
+}
 
-const FileEditor: React.FC = () => {
+const FileEditor: React.FC<FileEditorProps> = (props) => {
   const [show, setShow] = useState(false);
 
   const [file, setFile] = useState<IFile>({
@@ -34,26 +37,36 @@ const FileEditor: React.FC = () => {
 
   const saveBtnHandler: React.MouseEventHandler<HTMLElement> = (event) => {
     event.preventDefault();
-    console.log({ file });
+    if (props.fileList.includes(file.name)) {
+      return;
+    }
+    props.onAdd(file);
     handleClose();
   };
 
-  const inputChangeHandler: React.ChangeEventHandler<FormControlElement> = (
-    event
-  ) => {
+  const inputChangeHandler: FormControlProps["onChange"] = (event) => {
     const fileDetail = event.target.value.split(".");
     const fileExt = fileDetail[fileDetail.length - 1];
+    const fileLanguage:
+      | "html"
+      | "css"
+      | "javascript"
+      | "json"
+      | "md"
+      | "mjs"
+      | "typescript" = fileTypes(fileExt);
 
     setFile({
       name: event.target.value,
-      language: fileExt,
+      language: fileLanguage,
       value: "",
     });
   };
 
   return (
     <>
-      <Row>
+      <h5 className="mb-4">FILES</h5>
+      <Row className="mb-4">
         <Col>
           <Button onClick={handleShow}>
             <FileEarmarkPlusFill className="px-1" size={24} />
@@ -68,6 +81,20 @@ const FileEditor: React.FC = () => {
           />
         </Col>
       </Row>
+      {props.fileList.map((file) => {
+        return (
+          <Row
+            key={file}
+            className="my-1 py-1 bg-secondary rounded"
+            onClick={() => props.onSelect(file)}
+          >
+            <Col>
+              {file}
+              <Trash style={{ cursor: "pointer" }} />
+            </Col>
+          </Row>
+        );
+      })}
     </>
   );
 };
