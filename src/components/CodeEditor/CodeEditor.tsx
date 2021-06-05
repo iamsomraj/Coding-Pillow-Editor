@@ -6,6 +6,7 @@ import { files as defaultFiles } from "../../data/files";
 import { IFile, IFiles } from "../../types";
 import Terminal from "../Terminal/Terminal";
 import FileEditor from "../FileEditor/FileEditor";
+import Preview from "../Preview/Preview";
 
 const CodeEditor: React.FC = () => {
   /**
@@ -33,7 +34,7 @@ const CodeEditor: React.FC = () => {
    * @param file
    */
   const selectFileHandler = (file: string) => {
-    setCurrentFile(files[file]);
+    if (files[file]) setCurrentFile(files[file]);
   };
 
   /**
@@ -96,11 +97,25 @@ const CodeEditor: React.FC = () => {
             )}
           </Row>
           <Row className="mb-2">
-            <Terminal />
+            <div className="mb-4">TERMINAL</div>
+            <Terminal onSelect={selectFileHandler} files={files} />
           </Row>
         </Col>
         <Col className="my-4" md={2}>
-          PREVIEW
+          <Row className="mb-2">
+            <div className="mb-4">PREVIEW</div>
+            <Preview
+              htmlFile={{
+                name: "sample.html",
+                language: "html",
+                value: `Lorem ipsum dolor sit amet consectetur, 
+                        adipisicing elit. Sit voluptates harum quo 
+                        optio laboriosam alias explicabo quia dolorem,
+                        neque soluta aliquid in nulla corrupti totam quis
+                        voluptatem ad impedit doloremque`,
+              }}
+            />
+          </Row>
         </Col>
       </Row>
     </>
