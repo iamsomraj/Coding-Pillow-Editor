@@ -1,10 +1,10 @@
-import { useState } from "react";
 import Editor, { OnChange } from "@monaco-editor/react";
-import { editorConfig } from "../../config/config";
+import { useState } from "react";
 import { Col, Row } from "react-bootstrap";
-import FileEditor from "../FileEditor/FileEditor";
-import { IFile, IFiles } from "../../types";
+import { editorConfig } from "../../config/config";
 import { files as defaultFiles } from "../../data/files";
+import { IFile, IFiles } from "../../types";
+import FileEditor from "../FileEditor/FileEditor";
 
 const CodeEditor: React.FC = () => {
   /**
@@ -14,11 +14,10 @@ const CodeEditor: React.FC = () => {
   const [files, setFiles] = useState<IFiles>(defaultFiles);
 
   /**
-   * @type: string
+   * @type: object
    * @description: stores current selected file
    */
-  const [selectedFile, setSelectedFile] = useState("script.js");
-  const [currentFile, setCurrentFile] = useState<IFile>(files[selectedFile]);
+  const [currentFile, setCurrentFile] = useState<IFile>(files["script.js"]);
 
   /**
    *  @type: string[]
@@ -33,7 +32,6 @@ const CodeEditor: React.FC = () => {
    * @param file
    */
   const selectFileHandler = (file: string) => {
-    setSelectedFile(file);
     setCurrentFile(files[file]);
   };
 
@@ -58,7 +56,7 @@ const CodeEditor: React.FC = () => {
     if (!enteredValue) return;
 
     const currFiles = { ...files };
-    currFiles[selectedFile].value = enteredValue;
+    currFiles[currentFile.name].value = enteredValue;
     setFiles(currFiles);
   };
 
@@ -67,6 +65,16 @@ const CodeEditor: React.FC = () => {
 
     const currFiles = { ...files };
     delete currFiles[fileName];
+    for (const key in files) {
+      if (Object.prototype.hasOwnProperty.call(files, key)) {
+        const element = files[key];
+        if (element.name !== fileName) {
+          console.log(element);
+          setCurrentFile(element);
+          break;
+        }
+      }
+    }
     setFiles(currFiles);
   };
 
@@ -75,7 +83,7 @@ const CodeEditor: React.FC = () => {
       <Row className="my-3">
         <Col className="my-4" md={2}>
           <FileEditor
-            selectedFile={selectedFile}
+            selectedFile={currentFile.name}
             onAdd={addFileHandler}
             onSelect={selectFileHandler}
             onDelete={deleteFileHandler}
@@ -89,8 +97,8 @@ const CodeEditor: React.FC = () => {
               theme={editorConfig.theme}
               onChange={editorChangeHandler}
               path={currentFile.name}
-              defaultLanguage={currentFile.language}
-              defaultValue={currentFile.value}
+              language={currentFile.language}
+              value={currentFile.value}
             />
           )}
         </Col>
