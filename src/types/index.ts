@@ -1,7 +1,9 @@
 export interface IFiles {
-  [key: string]: {
-    name: string;
-    language: string;
-    value: string;
-  };
+  [key: string]: IFile;
+}
+
+export interface IFile {
+  name: string;
+  language: string;
+  value: string;
 }

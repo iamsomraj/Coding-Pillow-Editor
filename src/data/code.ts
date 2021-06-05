@@ -1,4 +1,4 @@
-const code = `
+export const jsCode = `
 const Somraj = {
   name: "Somraj Mukherjee",
   title: "Fullstack Intern"
@@ -7,4 +7,3 @@ const Somraj = {
 export default Somraj;
 `;
 
-export default code;

@@ -15,6 +15,7 @@
     "monaco-editor": "^0.23.0",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
+    "react-bootstrap-icons": "^1.5.0",
     "react-dom": "^17.0.2",
     "react-router-bootstrap": "^0.25.0",
     "react-router-dom": "^5.2.0",
