@@ -4,6 +4,7 @@ import { Col, Row } from "react-bootstrap";
 import { editorConfig } from "../../config/config";
 import { files as defaultFiles } from "../../data/files";
 import { IFile, IFiles } from "../../types";
+import Terminal from "../CPTerminal/CPTerminal";
 import FileEditor from "../FileEditor/FileEditor";
 
 const CodeEditor: React.FC = () => {
@@ -81,7 +82,8 @@ const CodeEditor: React.FC = () => {
           />
         </Col>
         <Col className="my-4" md={8}>
-          <Row className="m-2">
+          <Row className="mb-2">
+            <div className="mb-4">EDITOR</div>
             {currentFile && (
               <Editor
                 height={editorConfig.height}
@@ -93,7 +95,8 @@ const CodeEditor: React.FC = () => {
               />
             )}
           </Row>
-          <Row className="m-2">
+          <Row className="mb-2">
+            <Terminal />
           </Row>
         </Col>
         <Col className="my-4" md={2}>

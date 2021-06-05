@@ -82,7 +82,7 @@ const FileEditor: React.FC<FileEditorProps> = (props) => {
 
   return (
     <>
-      <h5 className="mb-4">FILES</h5>
+      <div className="mb-4">FILES</div>
       <Row className="mb-4">
         <Col className="d-flex justify-content-between align-items-center">
           <Button onClick={handleShow}>New File</Button>
