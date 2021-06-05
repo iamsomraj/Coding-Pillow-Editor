@@ -1,13 +1,31 @@
 import ReactTerminal from "terminal-in-react";
 import { IFiles } from "../../types";
+import {
+  EraseCommandUtil,
+  HelpCommandUtil,
+  OpenCommandUtil,
+} from "./TerminalUtil";
 
-interface TerminalProps {
-  onSelect: (file: string) => void;
+export interface TerminalProps {
   files: IFiles;
+  onSelect: (file: string) => void;
+  onErase: (file: string) => void;
 }
 
 const Terminal: React.FC<TerminalProps> = (props) => {
-  const showMsg = () => "Hello Friend";
+  const myCommands = [
+    {
+      command: "clear",
+      syntax: "<clear>",
+      desc: "cleans the terminal terminal",
+    },
+    { command: "open", syntax: "<open FILENAME>", desc: "opens a file" },
+    {
+      command: "erase",
+      syntax: "<erase FILENAME>",
+      desc: "erases a file content",
+    },
+  ];
 
   return (
     <ReactTerminal
@@ -24,38 +42,9 @@ const Terminal: React.FC<TerminalProps> = (props) => {
       hideTopBar={true}
       allowTabs={false}
       commands={{
-        open: {
-          method: (args: any, print: any) => {
-            const arg = args._[0] || args.fileName;
-            if (!arg) {
-              print("-bash:error: file name not found");
-              print("-bash:error: invalid command");
-              return;
-            }
-
-            if (!props.files[arg]) {
-              print("-bash:error: file does not exists");
-              return;
-            }
-
-            print(`File ${arg} selected`);
-            props.onSelect(arg);
-          },
-          options: [
-            {
-              name: "fileName",
-              description: "One file should be selected",
-            },
-          ],
-        },
-        showmsg: showMsg,
-        popup: () => alert("Terminal in React"),
-      }}
-      description={{
-        "open-file": "open filename.ext",
-        showmsg: "shows a message",
-        alert: "alert",
-        popup: "alert",
+        open: OpenCommandUtil(props),
+        erase: EraseCommandUtil(props),
+        help: HelpCommandUtil(props, myCommands),
       }}
       msg="Hello! My name is Coding Pillow Terminal! type help for all options"
     />

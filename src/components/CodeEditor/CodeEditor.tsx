@@ -34,6 +34,8 @@ const CodeEditor: React.FC = () => {
    * @param file
    */
   const selectFileHandler = (file: string) => {
+    if (!file) return;
+
     if (files[file]) setCurrentFile(files[file]);
   };
 
@@ -64,6 +66,8 @@ const CodeEditor: React.FC = () => {
 
   const eraseFileHandler = (fileName: string) => {
     if (!fileName) return;
+
+    if (!files[fileName]) return;
 
     const currFiles = { ...files };
     currFiles[fileName].value = "";
@@ -98,7 +102,11 @@ const CodeEditor: React.FC = () => {
           </Row>
           <Row className="mb-2">
             <div className="mb-4">TERMINAL</div>
-            <Terminal onSelect={selectFileHandler} files={files} />
+            <Terminal
+              files={files}
+              onSelect={selectFileHandler}
+              onErase={eraseFileHandler}
+            />
           </Row>
         </Col>
         <Col className="my-4" md={2}>
