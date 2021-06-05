@@ -4,7 +4,7 @@ import { Col, Row } from "react-bootstrap";
 import { editorConfig } from "../../config/config";
 import { files as defaultFiles } from "../../data/files";
 import { IFile, IFiles } from "../../types";
-import Terminal from "../CPTerminal/CPTerminal";
+import Terminal from "../Terminal/Terminal";
 import FileEditor from "../FileEditor/FileEditor";
 
 const CodeEditor: React.FC = () => {
