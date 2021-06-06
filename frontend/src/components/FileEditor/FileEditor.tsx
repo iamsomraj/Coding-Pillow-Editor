@@ -89,8 +89,8 @@ const FileEditor: React.FC<FileEditorProps> = (props) => {
   };
 
   return (
-    <>
-      <div className="mb-4">FILES</div>
+    <div className="px-3">
+      <div className="m-0 mb-4">FILES</div>
       <Row className="mb-4">
         <Col className="m-0 p-0">
           <Button className="rounded-0" onClick={handleShow}>
@@ -126,7 +126,7 @@ const FileEditor: React.FC<FileEditorProps> = (props) => {
           </Row>
         );
       })}
-    </>
+    </div>
   );
 };
 

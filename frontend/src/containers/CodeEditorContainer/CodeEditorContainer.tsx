@@ -6,7 +6,6 @@ import CodeEditor from "../../components/CodeEditor/CodeEditor";
 import FileEditor from "../../components/FileEditor/FileEditor";
 import Preview from "../../components/Preview/Preview";
 import Terminal from "../../components/Terminal/Terminal";
-import { files as defaultFiles } from "../../data/files";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { IFile } from "../../types";
@@ -144,7 +143,7 @@ const CodeEditorContainer: React.FC = () => {
   return (
     <>
       <Row className="my-3">
-        <Col className="my-4" md={2}>
+        <Col className="my-4" md={3}>
           <FileEditor
             selectedFile={currentFile}
             onAdd={addFileHandler}
@@ -153,7 +152,7 @@ const CodeEditorContainer: React.FC = () => {
             fileList={files}
           />
         </Col>
-        <Col className="my-4" md={8}>
+        <Col className="my-4" md={6}>
           <Row className="mb-2">
             <div className="mb-4">EDITOR</div>
             <CodeEditor
@@ -165,17 +164,10 @@ const CodeEditorContainer: React.FC = () => {
             <Terminal />
           </Row>
         </Col>
-        <Col className="my-4" md={2}>
+        <Col className="my-4" md={3}>
           <Row className="mb-2">
             <div className="mb-4">PREVIEW</div>
-            <Preview
-              htmlFile={{
-                id: "sample.html",
-                name: "sample.html",
-                language: "html",
-                value: `This is a static text preview for check`,
-              }}
-            />
+            <Preview currentFile={currentFile} />
           </Row>
         </Col>
       </Row>
