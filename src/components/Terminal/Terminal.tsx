@@ -21,12 +21,10 @@ const Terminal: React.FC = (props) => {
       color="white"
       outputColor="yellow"
       style={{
-        fontSize: "1rem",
-        width: "100%",
+        padding: "1rem 2rem",
       }}
       startState="maximised"
-      backgroundColor="rgb(34,34,34)"
-      barColor="black"
+      backgroundColor="rgb(68,68,68)"
       promptSymbol="🚀  "
       hideTopBar={true}
       allowTabs={false}

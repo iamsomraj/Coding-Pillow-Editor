@@ -102,8 +102,7 @@ const CodeEditor: React.FC = () => {
               />
             )}
           </Row>
-          <Row className="mb-2">
-            <div className="mb-4">TERMINAL</div>
+          <Row className="mb-3">
             <Terminal />
           </Row>
         </Col>
@@ -114,11 +113,7 @@ const CodeEditor: React.FC = () => {
               htmlFile={{
                 name: "sample.html",
                 language: "html",
-                value: `Lorem ipsum dolor sit amet consectetur, 
-                        adipisicing elit. Sit voluptates harum quo 
-                        optio laboriosam alias explicabo quia dolorem,
-                        neque soluta aliquid in nulla corrupti totam quis
-                        voluptatem ad impedit doloremque`,
+                value: `This is a static text preview for check`,
               }}
             />
           </Row>
