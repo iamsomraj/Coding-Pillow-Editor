@@ -88,4 +88,4 @@ const files = [
   },
 ];
 
-module.exports = files;
+export default files;
