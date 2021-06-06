@@ -16,13 +16,13 @@ const CodeEditorContainer: React.FC = () => {
    * @type: array
    * @description: storing all the files with id, name, value, language
    */
-  const [files, setFiles] = useState<IFile[]>(defaultFiles);
+  const [files, setFiles] = useState<IFile[]>([]);
 
   /**
    * @type: object
    * @description: stores current selected file object with id, name, value and language
    */
-  let [currentFile, setCurrentFile] = useState<IFile>(files[0]);
+  let [currentFile, setCurrentFile] = useState<IFile>(Object);
 
   const { fetchFiles } = useActions();
   const { loading, data, error } = useTypedSelector(
@@ -47,7 +47,7 @@ const CodeEditorContainer: React.FC = () => {
    * @returns false if file not present else IFile
    */
   const fileExists = (id: string) => {
-    if (id) {
+    if (id && files && files.length > 0) {
       const found = files.find((file) => file.id === id);
       if (found) {
         return found;
@@ -81,11 +81,12 @@ const CodeEditorContainer: React.FC = () => {
   const addFileHandler = (file: IFile) => {
     if (fileExists(file.id)) return;
 
-    if (file && file.name) {
+    if (file && file.name && files) {
       const currFiles = [...files, file];
-      selectFileHandler(file.id);
       setFiles(currFiles);
     }
+
+    debugger;
   };
 
   /**
