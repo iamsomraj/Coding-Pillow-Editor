@@ -1,12 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import Editor, { OnChange } from "@monaco-editor/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { editorConfig } from "../../config/config";
 import { files as defaultFiles } from "../../data/files";
+import { useActions } from "../../hooks/useActions";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { IFile, IFiles } from "../../types";
-import Terminal from "../Terminal/Terminal";
 import FileEditor from "../FileEditor/FileEditor";
 import Preview from "../Preview/Preview";
+import Terminal from "../Terminal/Terminal";
 
 const CodeEditor: React.FC = () => {
   /**
@@ -14,6 +17,16 @@ const CodeEditor: React.FC = () => {
    * @description: storing all the file with name, value, language
    */
   const [files, setFiles] = useState<IFiles>(defaultFiles);
+
+  const { fetchFiles } = useActions();
+  const { loading, data, error } = useTypedSelector(
+    (state) => state.fetchedFiles
+  );
+
+  useEffect(() => {
+    fetchFiles();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   /**
    * @type: object

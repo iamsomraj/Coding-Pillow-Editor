@@ -1,0 +1,29 @@
+{
+  "name": "coding-pillow-editor",
+  "version": "1.0.0",
+  "description": "basic code editor application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server",
+    "sever": "nodemon backend/server",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run\" "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamsomraj/Coding-Pillow-Editor.git"
+  },
+  "author": "Somraj Mukherjee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iamsomraj/Coding-Pillow-Editor/issues"
+  },
+  "homepage": "https://github.com/iamsomraj/Coding-Pillow-Editor#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "concurrently": "^6.2.0",
+    "nodemon": "^2.0.7"
+  }
+}

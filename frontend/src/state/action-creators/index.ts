@@ -7,7 +7,7 @@ export const fetchFiles =
   () => async (dispatch: Dispatch<fetchFilesAction>) => {
     dispatch({ type: fetchFilesActionTypes.FETCH_FILES_REQUEST });
     try {
-      const { data } = await axios.get("");
+      const { data } = await axios.get("api/files/");
       dispatch({
         type: fetchFilesActionTypes.FETCH_FILES_SUCCESS,
         payload: data,
@@ -15,8 +15,7 @@ export const fetchFiles =
     } catch (error) {
       dispatch({
         type: fetchFilesActionTypes.FETCH_FILES_FAILURE,
-        payload:
-          "Something went wrong while fetching files: " + error.getMessage(),
+        payload: "Something went wrong while fetching files",
       });
     }
   };
