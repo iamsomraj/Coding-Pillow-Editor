@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const fileSchema = mongoose.schema(
+const fileSchema = mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
