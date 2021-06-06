@@ -16,7 +16,8 @@ const Preview: React.FC<PreviewProps> = (props) => {
       }}
     >
       {props.currentFile.value && props.currentFile.value}
-      {!props.currentFile.value && `Hello there! Type anything in editor....`}
+      {!props.currentFile.value &&
+        `Hello there! Type anything in editor.... I wrap everything....`}
     </div>
   );
 };
