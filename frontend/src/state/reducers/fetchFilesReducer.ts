@@ -4,7 +4,7 @@ import { fetchFilesAction } from "../actions";
 
 const initialState: IFileReducerState = {
   loading: false,
-  data: {},
+  data: [],
   error: null,
 };
 
@@ -13,7 +13,7 @@ const fetchFilesReducer = (state = initialState, action: fetchFilesAction) => {
     case fetchFilesActionTypes.FETCH_FILES_REQUEST:
       return {
         loading: true,
-        data: {},
+        data: [],
         error: null,
       };
     case fetchFilesActionTypes.FETCH_FILES_SUCCESS:
@@ -26,7 +26,7 @@ const fetchFilesReducer = (state = initialState, action: fetchFilesAction) => {
     case fetchFilesActionTypes.FETCH_FILES_FAILURE: {
       return {
         loading: false,
-        data: {},
+        data: [],
         error: action.payload,
       };
     }

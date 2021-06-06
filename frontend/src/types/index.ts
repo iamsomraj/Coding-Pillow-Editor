@@ -1,8 +1,5 @@
-export interface IFiles {
-  [key: string]: IFile;
-}
-
 export interface IFile {
+  id: string;
   name: string;
   language: string;
   value: string;
@@ -10,6 +7,6 @@ export interface IFile {
 
 export interface IFileReducerState {
   loading: boolean;
-  data: IFiles;
+  data: IFile[];
   error: string | null;
 }

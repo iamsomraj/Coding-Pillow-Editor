@@ -24,7 +24,7 @@ const CodeEditor: React.FC = () => {
   );
 
   useEffect(() => {
-    fetchFiles();
+    // fetchFiles();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
