@@ -12,8 +12,8 @@ const Terminal: React.FC = (props) => {
       syntax: "<clear>",
       desc: "cleans the terminal terminal",
     },
-    { command: "alert", syntax: "<alert TEXT>", desc: "creates an alert" },
-    { command: "echo", syntax: "<echo TEXT>", desc: "displays a message" },
+    { command: "alert", syntax: "<alert WORD>", desc: "creates an alert" },
+    { command: "echo", syntax: "<echo WORD>", desc: "displays a message" },
   ];
 
   return (
