@@ -104,11 +104,7 @@ const CodeEditor: React.FC = () => {
           </Row>
           <Row className="mb-2">
             <div className="mb-4">TERMINAL</div>
-            <Terminal
-              files={files}
-              onSelect={selectFileHandler}
-              onErase={eraseFileHandler}
-            />
+            <Terminal />
           </Row>
         </Col>
         <Col className="my-4" md={2}>

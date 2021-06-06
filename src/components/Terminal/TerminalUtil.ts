@@ -1,61 +1,44 @@
-import { TerminalProps } from "./Terminal";
-
-export const OpenCommandUtil = (props: TerminalProps) => {
+export const echoCommandUtil = () => {
   return {
     method: (args: any, print: any) => {
-      const arg = args._[0] || args.fileName;
+      const arg = args._[0] || args.message;
       if (!arg) {
-        print("-bash:error: file name not found");
         print("-bash:error: invalid command");
         return;
       }
 
-      if (!props.files[arg]) {
-        print("-bash:error: file does not exists");
-        return;
-      }
-
-      print(`File ${arg} selected`);
-      props.onSelect(arg);
+      print(`${arg}`);
     },
     options: [
       {
-        name: "fileName",
-        description: "One file should be selected",
+        name: "message",
+        description: "Message text should be displayed",
       },
     ],
   };
 };
 
-export const EraseCommandUtil = (props: TerminalProps) => {
+export const alertCommandUtil = () => {
   return {
     method: (args: any, print: any) => {
-      const arg = args._[0] || args.fileName;
+      const arg = args._[0] || args.message;
       if (!arg) {
-        print("-bash:error: file name not found");
         print("-bash:error: invalid command");
         return;
       }
-
-      if (!props.files[arg]) {
-        print("-bash:error: file does not exists");
-        return;
-      }
-
-      print(`File ${arg} selected`);
-      props.onErase(arg);
+      alert(`Coding Pillow Terminal says: ${arg}`);
+      print("-bash:success: alert");
     },
     options: [
       {
-        name: "fileName",
-        description: "File's content should be erased",
+        name: "message",
+        description: "Alert should be shown",
       },
     ],
   };
 };
 
 export const HelpCommandUtil = (
-  props: TerminalProps,
   myCommands: {
     [key: string]: string;
   }[]

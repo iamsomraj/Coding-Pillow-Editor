@@ -1,31 +1,19 @@
-import { useEffect } from "react";
 import ReactTerminal from "terminal-in-react";
-import { IFiles } from "../../types";
 import {
-  EraseCommandUtil,
+  alertCommandUtil,
+  echoCommandUtil,
   HelpCommandUtil,
-  OpenCommandUtil,
 } from "./TerminalUtil";
 
-export interface TerminalProps {
-  files: IFiles;
-  onSelect: (file: string) => void;
-  onErase: (file: string) => void;
-}
-
-const Terminal: React.FC<TerminalProps> = (props) => {
+const Terminal: React.FC = (props) => {
   const myCommands = [
     {
       command: "clear",
       syntax: "<clear>",
       desc: "cleans the terminal terminal",
     },
-    { command: "open", syntax: "<open FILENAME>", desc: "opens a file" },
-    {
-      command: "erase",
-      syntax: "<erase FILENAME>",
-      desc: "erases a file content",
-    },
+    { command: "alert", syntax: "<alert TEXT>", desc: "creates an alert" },
+    { command: "echo", syntax: "<echo TEXT>", desc: "displays a message" },
   ];
 
   return (
@@ -43,9 +31,9 @@ const Terminal: React.FC<TerminalProps> = (props) => {
       hideTopBar={true}
       allowTabs={false}
       commands={{
-        open: OpenCommandUtil(props),
-        erase: EraseCommandUtil(props),
-        help: HelpCommandUtil(props, myCommands),
+        alert: alertCommandUtil(),
+        echo: echoCommandUtil(),
+        help: HelpCommandUtil(myCommands),
       }}
       msg="Hello! My name is Coding Pillow Terminal! type help for all options"
     />
