@@ -1,4 +1,4 @@
-import { IFiles } from "../../types";
+import { IFile } from "../../types";
 import { fetchFilesActionTypes } from "../action-types";
 
 export interface fetchFilesRequestAction {
@@ -7,7 +7,7 @@ export interface fetchFilesRequestAction {
 
 export interface fetchFilesSuccessAction {
   type: fetchFilesActionTypes.FETCH_FILES_SUCCESS;
-  payload: IFiles[];
+  payload: IFile[];
 }
 
 export interface fetchFilesFailureAction {

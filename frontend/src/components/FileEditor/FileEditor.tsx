@@ -8,10 +8,10 @@ import styles from "./FileEditor.module.css";
 
 interface FileEditorProps {
   onAdd: (file: IFile) => void;
-  fileList: string[];
-  selectedFile: string;
-  onSelect: (file: string) => void;
-  onErase: (file: string) => void;
+  fileList: IFile[];
+  selectedFile: IFile;
+  onSelect: (id: string) => void;
+  onErase: (id: string) => void;
 }
 
 const FileEditor: React.FC<FileEditorProps> = (props) => {
@@ -20,7 +20,7 @@ const FileEditor: React.FC<FileEditorProps> = (props) => {
   /**
    * @description: input file state
    */
-  const [file, setFile] = useState<IFile>({
+  const [file, setFile] = useState({
     name: "",
     language: "",
     value: "",
@@ -50,10 +50,18 @@ const FileEditor: React.FC<FileEditorProps> = (props) => {
    */
   const saveBtnHandler: React.FormEventHandler<HTMLElement> = (event) => {
     event.preventDefault();
-    if (props.fileList.includes(file.name.trim())) {
+    const found = props.fileList.find(
+      (savedFile) => savedFile.name === file.name
+    );
+
+    /**
+     * If file exists, then return
+     */
+    if (found) {
       return;
     }
-    props.onAdd({ ...file, name: file.name.trim() });
+
+    props.onAdd({ ...file, name: file.name.trim(), id: file.name.trim() });
     handleClose();
   };
 
@@ -100,18 +108,20 @@ const FileEditor: React.FC<FileEditorProps> = (props) => {
       {props.fileList.map((file) => {
         return (
           <Row
-            key={file}
+            key={file.id}
             className={`${
-              props.selectedFile === file ? "bg-primary" : "bg-secondary"
+              props.selectedFile.id === file.id ? "bg-primary" : "bg-secondary"
             }`}
-            onClick={() => props.onSelect(file)}
+            onClick={() => props.onSelect(file.id)}
           >
             <Col className="d-flex justify-content-between align-items-center">
-              {file}
-              <EraserFill
-                className={styles.clearBtn}
-                onClick={() => props.onErase(file)}
-              />
+              {file.name}
+              {props.selectedFile.id === file.id && (
+                <EraserFill
+                  className={styles.clearBtn}
+                  onClick={() => props.onErase(file.id)}
+                />
+              )}
             </Col>
           </Row>
         );

@@ -1,5 +1,5 @@
 import { Container } from "react-bootstrap/";
-import CodeEditor from "./components/CodeEditor/CodeEditor";
+import CodeEditorContainer from "./containers/CodeEditorContainer/CodeEditorContainer";
 import Header from "./components/Header/Header";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -10,7 +10,7 @@ function App() {
     <Router>
       <Header />
       <Container>
-        <Route path="/" component={CodeEditor} exact />
+        <Route path="/" component={CodeEditorContainer} exact />
       </Container>
     </Router>
   );

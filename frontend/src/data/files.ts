@@ -1,20 +1,23 @@
-import { IFiles } from "../types";
+import { IFile } from "../types";
 import { jsCode, cssCode, htmlCode } from "./code";
 
-export const files: IFiles = {
-  "script.js": {
+export const files: IFile[] = [
+  {
+    id: "script.js",
     name: "script.js",
     language: "javascript",
     value: jsCode,
   },
-  "style.css": {
+  {
+    id: "style.css",
     name: "style.css",
     language: "css",
     value: cssCode,
   },
-  "index.html": {
+  {
+    id: "index.html",
     name: "index.html",
     language: "html",
     value: htmlCode,
   },
-};
+];
