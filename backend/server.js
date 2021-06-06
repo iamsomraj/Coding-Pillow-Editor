@@ -1,5 +1,8 @@
+const dotenv = require("dotenv");
 const express = require("express");
 const files = require("./data/files");
+
+dotenv.config();
 
 const app = express();
 
