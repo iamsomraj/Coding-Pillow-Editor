@@ -7,3 +7,9 @@ export interface IFile {
   language: string;
   value: string;
 }
+
+export interface IFileReducerState {
+  loading: boolean;
+  data: IFiles;
+  error: string | null;
+}
