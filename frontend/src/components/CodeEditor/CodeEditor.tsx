@@ -7,6 +7,21 @@ interface CodeEditorProps {
 }
 
 const CodeEditor: React.FC<CodeEditorProps> = (props) => {
+  const defaultValue = `
+Create a new file...
+Select it to experience the editor..
+`;
+
+  if (!props.currentFile.id) {
+    return (
+      <Editor
+        height={editorConfig.height}
+        theme={editorConfig.theme}
+        defaultValue={defaultValue}
+      />
+    );
+  }
+
   return (
     <Editor
       height={editorConfig.height}
