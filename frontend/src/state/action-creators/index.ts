@@ -5,13 +5,24 @@ import {
   loginUserActionTypes,
   registerUserActionTypes,
 } from "../action-types";
+
 import { fetchFilesAction, loginUserAction } from "../actions";
 
 export const fetchFiles =
-  () => async (dispatch: Dispatch<fetchFilesAction>) => {
-    dispatch({ type: fetchFilesActionTypes.FETCH_FILES_REQUEST });
+  () => async (dispatch: Dispatch<fetchFilesAction>, getState) => {
     try {
-      const { data } = await axios.get("api/files/");
+      dispatch({ type: fetchFilesActionTypes.FETCH_FILES_REQUEST });
+      const {
+        userLogin: { userInfo },
+      } = getState();
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+
+      const { data } = await axios.get("api/files/", config);
 
       dispatch({
         type: fetchFilesActionTypes.FETCH_FILES_SUCCESS,
@@ -20,7 +31,10 @@ export const fetchFiles =
     } catch (error) {
       dispatch({
         type: fetchFilesActionTypes.FETCH_FILES_FAILURE,
-        payload: "Something went wrong while fetching files",
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
       });
     }
   };
@@ -116,17 +130,17 @@ export const register =
 //       type: USER_DETAILS_REQUEST,
 //     })
 
-//     const {
-//       userLogin: { userInfo },
-//     } = getState()
+// const {
+//   userLogin: { userInfo },
+// } = getState()
 
-//     const config = {
-//       headers: {
-//         Authorization: `Bearer ${userInfo.token}`,
-//       },
-//     }
+// const config = {
+//   headers: {
+//     Authorization: `Bearer ${userInfo.token}`,
+//   },
+// }
 
-//     const { data } = await axios.get(`/api/users/${id}`, config)
+// const { data } = await axios.get(`/api/users/${id}`, config)
 
 //     dispatch({
 //       type: USER_DETAILS_SUCCESS,
