@@ -1,16 +1,19 @@
 import axios from "axios";
 import { Dispatch } from "redux";
+import { IFile } from "../../types";
 import {
   createFileActionTypes,
   fetchFilesActionTypes,
   loginUserActionTypes,
   registerUserActionTypes,
+  updateFileActionTypes,
 } from "../action-types";
 
 import {
   createFileActions,
   fetchFilesAction,
   loginUserAction,
+  updateFileActions,
 } from "../actions";
 
 export const fetchFiles =
@@ -72,6 +75,42 @@ export const createFile =
     } catch (error) {
       dispatch({
         type: createFileActionTypes.CREATE_FILE_FAILURE,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
+
+export const updateFile =
+  (file: IFile) =>
+  async (dispatch: Dispatch<updateFileActions>, getState: any) => {
+    try {
+      dispatch({ type: updateFileActionTypes.UPDATE_FILE_REQUEST });
+      const {
+        loginUser: { data: userInfo },
+      } = getState();
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+
+      const { data } = await axios.put(
+        `api/files/${file._id}`,
+        { ...file },
+        config
+      );
+
+      dispatch({
+        type: updateFileActionTypes.UPDATE_FILE_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: updateFileActionTypes.UPDATE_FILE_FAILURE,
         payload:
           error.response && error.response.data.message
             ? error.response.data.message

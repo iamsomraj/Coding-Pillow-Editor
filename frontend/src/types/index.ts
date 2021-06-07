@@ -17,6 +17,12 @@ export interface ICreateFileReducerState {
   error?: string;
 }
 
+export interface IUpdateFileReducerState {
+  loading?: boolean;
+  data: IFile | null;
+  error?: string;
+}
+
 export interface IUser {
   _id: string;
   name: string;

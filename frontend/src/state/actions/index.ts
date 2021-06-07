@@ -4,6 +4,7 @@ import {
   fetchFilesActionTypes,
   loginUserActionTypes,
   registerUserActionTypes,
+  updateFileActionTypes,
 } from "../action-types";
 
 export interface fetchFilesRequestAction {
@@ -43,6 +44,25 @@ export type createFileActions =
   | createFileRequestAction
   | createFileSuccessAction
   | createFileFailureAction;
+
+export interface updateFileRequestAction {
+  type: updateFileActionTypes.UPDATE_FILE_REQUEST;
+}
+
+export interface updateFileSuccessAction {
+  type: updateFileActionTypes.UPDATE_FILE_SUCCESS;
+  payload: IFile;
+}
+
+export interface updateFileFailureAction {
+  type: updateFileActionTypes.UPDATE_FILE_FAILURE;
+  payload: string;
+}
+
+export type updateFileActions =
+  | updateFileRequestAction
+  | updateFileSuccessAction
+  | updateFileFailureAction;
 
 export interface loginUserRequestAction {
   type: loginUserActionTypes.LOGIN_USER_REQUEST;
