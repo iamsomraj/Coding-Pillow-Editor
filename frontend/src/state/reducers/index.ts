@@ -4,7 +4,7 @@ import { userLoginReducer } from "./userReducer";
 
 export const rootReducer = combineReducers({
   fetchedFiles: fetchFilesReducer,
-  userLogin: userLoginReducer,
+  loginUser: userLoginReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

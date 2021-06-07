@@ -46,7 +46,6 @@ export const login =
         payload: data,
       });
 
-      localStorage.setItem("userInfo", JSON.stringify(data));
     } catch (error) {
       dispatch({
         type: loginUserActionTypes.LOGIN_USER_FAILURE,
@@ -59,7 +58,6 @@ export const login =
   };
 
 export const logout = () => (dispatch: Dispatch<loginUserAction>) => {
-  localStorage.removeItem("userInfo");
   dispatch({ type: loginUserActionTypes.LOGOUT_USER });
   document.location.href = "/login";
 };
@@ -92,7 +90,6 @@ export const logout = () => (dispatch: Dispatch<loginUserAction>) => {
 //       payload: data,
 //     })
 
-//     localStorage.setItem('userInfo', JSON.stringify(data))
 //   } catch (error) {
 //     dispatch({
 //       type: USER_REGISTER_FAIL,

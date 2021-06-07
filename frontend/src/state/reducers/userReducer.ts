@@ -3,7 +3,7 @@ import { loginUserActionTypes } from "../action-types";
 import { loginUserAction } from "../actions";
 
 const initialState: ILoginUserReducerState = {
-  data: {},
+  data: null,
 };
 
 export const userLoginReducer = (
@@ -14,7 +14,7 @@ export const userLoginReducer = (
     case loginUserActionTypes.LOGIN_USER_REQUEST:
       return {
         loading: true,
-        data: {},
+        data: null,
       };
     case loginUserActionTypes.LOGIN_USER_SUCCESS:
       return {
@@ -31,7 +31,7 @@ export const userLoginReducer = (
 
     case loginUserActionTypes.LOGOUT_USER: {
       return {
-        data: {},
+        data: null,
       };
     }
     default:
