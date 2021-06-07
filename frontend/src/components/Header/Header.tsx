@@ -1,4 +1,4 @@
-import { Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Nav, Navbar } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
@@ -23,14 +23,9 @@ const Header: React.FC = () => {
   if (userInfo) {
     loggedIn = (
       <>
-        <NavDropdown title={userInfo["name"]} id="username">
-          {/* <LinkContainer to="/profile">
-            <NavDropdown.Item>Profile</NavDropdown.Item>
-          </LinkContainer> */}
-          <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
-        </NavDropdown>
-        <LinkContainer to="/editor">
-          <Nav.Link>Editor</Nav.Link>
+        <Navbar.Brand>{`Hello ${userInfo.name}!`}</Navbar.Brand>
+        <LinkContainer to="/login">
+          <Nav.Link onClick={logoutHandler}>Logout</Nav.Link>
         </LinkContainer>
       </>
     );
