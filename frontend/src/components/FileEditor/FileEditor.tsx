@@ -1,18 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from "react";
 import { Button, Col, FormControlProps, Row } from "react-bootstrap";
-import { EraserFill } from "react-bootstrap-icons";
 import { useActions } from "../../hooks/useActions";
 import { IFile } from "../../types";
 import { fileTypes } from "../../util";
 import NewFileModal from "../NewFileModal/NewFileModal";
-import styles from "./FileEditor.module.css";
 
 interface FileEditorProps {
   fileList: IFile[];
   selectedFile: IFile;
   onSelect: (file: IFile) => void;
   onErase: (file: IFile) => void;
+  onSave: (file: IFile) => void;
 }
 
 const FileEditor: React.FC<FileEditorProps> = (props) => {
@@ -102,13 +101,23 @@ const FileEditor: React.FC<FileEditorProps> = (props) => {
             }`}
             onClick={() => props.onSelect(file)}
           >
-            <Col className="d-flex justify-content-between align-items-center">
+            <Col className="d-flex p-2 justify-content-between align-items-center">
               {file.name}
               {props.selectedFile._id === file._id && (
-                <EraserFill
-                  className={styles.clearBtn}
-                  onClick={() => props.onErase(file)}
-                />
+                <div>
+                  <Button
+                    className="rounded-0"
+                    onClick={() => props.onSave(file)}
+                  >
+                    Save
+                  </Button>
+                  <Button
+                    className="rounded-0"
+                    onClick={() => props.onErase(file)}
+                  >
+                    Erase
+                  </Button>
+                </div>
               )}
             </Col>
           </Row>

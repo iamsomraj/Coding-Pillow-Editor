@@ -29,6 +29,7 @@ const NewFileModal: React.FC<NewFileModalProps> = (props) => {
 
     if (found) {
       setMessage("File already exists");
+      return;
     }
 
     props.onSave();

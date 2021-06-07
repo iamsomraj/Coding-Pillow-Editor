@@ -37,9 +37,9 @@ const CodeEditorContainer: React.FC = ({ history }: any) => {
     setSelectedFile((pfile) => ({ ...pfile, ...file }));
   };
 
-  const eraseHandler = (file: IFile) => {
+  const updateHandler = (file: IFile, value: string) => {
     const updatedFile = { ...file };
-    updatedFile.value = "";
+    updatedFile.value = value;
     updateFile(
       updatedFile._id,
       updatedFile.name,
@@ -52,6 +52,14 @@ const CodeEditorContainer: React.FC = ({ history }: any) => {
         ...updatedFile,
       };
     });
+  };
+
+  const eraseHandler = (file: IFile) => {
+    updateHandler(file, "");
+  };
+
+  const saveHandler = (file: IFile) => {
+    updateHandler(file, selectedFile.value);
   };
 
   const editorChangeHandler: OnChange = (enteredValue) => {
@@ -78,6 +86,7 @@ const CodeEditorContainer: React.FC = ({ history }: any) => {
               selectedFile={selectedFile}
               onSelect={selectFileHandler}
               onErase={eraseHandler}
+              onSave={saveHandler}
             />
           </Col>
           <Col className="my-4" md={6}>
