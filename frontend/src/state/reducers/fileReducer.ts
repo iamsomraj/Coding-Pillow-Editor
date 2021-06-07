@@ -25,6 +25,7 @@ export const fetchFilesReducer = (
     case fetchFilesActionTypes.FETCH_FILES_FAILURE: {
       return {
         loading: false,
+        data: [],
         error: action.payload,
       };
     }

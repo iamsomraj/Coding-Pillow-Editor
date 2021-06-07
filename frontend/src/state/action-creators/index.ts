@@ -9,11 +9,11 @@ import {
 import { fetchFilesAction, loginUserAction } from "../actions";
 
 export const fetchFiles =
-  () => async (dispatch: Dispatch<fetchFilesAction>, getState) => {
+  () => async (dispatch: Dispatch<fetchFilesAction>, getState: any) => {
     try {
       dispatch({ type: fetchFilesActionTypes.FETCH_FILES_REQUEST });
       const {
-        userLogin: { userInfo },
+        loginUser: { data: userInfo },
       } = getState();
 
       const config = {

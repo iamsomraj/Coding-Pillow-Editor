@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import FileEditor from "../../components/FileEditor/FileEditor";
@@ -8,7 +6,7 @@ import Message from "../../components/Message/Message";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 
-const CodeEditorContainer: React.FC = () => {
+const CodeEditorContainer: React.FC = ({ history }: any) => {
   const { fetchFiles } = useActions();
   const {
     loading,
@@ -16,9 +14,16 @@ const CodeEditorContainer: React.FC = () => {
     error,
   } = useTypedSelector((state) => state.fetchedFiles);
 
+  const { data: userInfo } = useTypedSelector((state) => state.loginUser);
+
   useEffect(() => {
-    fetchFiles();
-  }, []);
+    if (userInfo) {
+      fetchFiles();
+    } else {
+      history.push("/login");
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [history, userInfo]);
 
   return (
     <>
