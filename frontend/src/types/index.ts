@@ -21,6 +21,6 @@ export interface IUser {
 
 export interface ILoginUserReducerState {
   loading?: boolean;
-  data: IUser | null;
+  data?: IUser | null;
   error?: string;
 }

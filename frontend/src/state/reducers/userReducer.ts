@@ -7,7 +7,7 @@ const initialState: ILoginUserReducerState = {
 };
 
 export const userLoginReducer = (
-  state = initialState,
+  state: ILoginUserReducerState = initialState,
   action: loginUserAction
 ) => {
   switch (action.type) {
@@ -25,6 +25,7 @@ export const userLoginReducer = (
     case loginUserActionTypes.LOGIN_USER_FAILURE: {
       return {
         loading: false,
+        data: null,
         error: action.payload,
       };
     }
