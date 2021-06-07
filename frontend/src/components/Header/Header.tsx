@@ -24,12 +24,12 @@ const Header: React.FC = () => {
     loggedIn = (
       <>
         <NavDropdown title={userInfo["name"]} id="username">
-          <LinkContainer to="/profile">
+          {/* <LinkContainer to="/profile">
             <NavDropdown.Item>Profile</NavDropdown.Item>
-          </LinkContainer>
+          </LinkContainer> */}
           <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
         </NavDropdown>
-        <LinkContainer to="/">
+        <LinkContainer to="/editor">
           <Nav.Link>Editor</Nav.Link>
         </LinkContainer>
       </>

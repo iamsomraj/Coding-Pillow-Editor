@@ -19,7 +19,7 @@ const RegisterUserContainer: React.FC = ({ location, history }: any) => {
   const userRegister = useTypedSelector((state) => state.registerUser);
   const { loading, error, data: userInfo } = userRegister;
 
-  const redirect = location.search ? location.search.split("=")[1] : "/";
+  const redirect = location.search ? location.search.split("=")[1] : "/editor";
 
   useEffect(() => {
     if (userInfo) {
