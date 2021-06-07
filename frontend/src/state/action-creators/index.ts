@@ -121,7 +121,7 @@ export const updateFile =
   };
 
 export const deleteFile =
-  (_id: string, name: string, language: string, value: string) =>
+  (_id: string) =>
   async (dispatch: Dispatch<deleteFileActions>, getState: any) => {
     try {
       dispatch({ type: deleteFileActionTypes.DELETE_FILE_REQUEST });

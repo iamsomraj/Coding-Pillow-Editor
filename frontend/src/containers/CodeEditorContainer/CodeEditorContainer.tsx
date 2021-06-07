@@ -14,7 +14,7 @@ import Preview from "../../components/Preview/Preview";
 const CodeEditorContainer: React.FC = ({ history }: any) => {
   let [selectedFile, setSelectedFile] = useState<IFile>(Object);
 
-  const { fetchFiles, updateFile } = useActions();
+  const { fetchFiles, updateFile, deleteFile } = useActions();
   const {
     loading,
     data: files,
@@ -24,15 +24,21 @@ const CodeEditorContainer: React.FC = ({ history }: any) => {
   const { data: userInfo } = useTypedSelector((state) => state.loginUser);
   const { data: createdFile } = useTypedSelector((state) => state.createFile);
   const { data: updatedFile } = useTypedSelector((state) => state.updateFile);
+  const { data: deletedFile } = useTypedSelector((state) => state.deleteFile);
 
   useEffect(() => {
-    if (userInfo || (userInfo && createdFile) || (userInfo && updatedFile)) {
+    if (
+      userInfo ||
+      (userInfo && createdFile) ||
+      (userInfo && updatedFile) ||
+      (userInfo && deletedFile)
+    ) {
       fetchFiles();
     } else {
       history.push("/login");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [history, userInfo, createdFile, updatedFile]);
+  }, [history, userInfo, createdFile, updatedFile, deletedFile]);
 
   const selectFileHandler = (file: IFile) => {
     setSelectedFile((pfile) => ({ ...pfile, ...file }));
@@ -63,6 +69,13 @@ const CodeEditorContainer: React.FC = ({ history }: any) => {
     updateHandler(file, selectedFile.value);
   };
 
+  const deleteHandler = (file: IFile) => {
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm("Do you really want to delete " + file.name + "?")) {
+      deleteFile(file._id);
+    }
+  };
+
   const editorChangeHandler: OnChange = (enteredValue) => {
     if (!enteredValue) return;
     setSelectedFile({
@@ -88,6 +101,7 @@ const CodeEditorContainer: React.FC = ({ history }: any) => {
               onSelect={selectFileHandler}
               onErase={eraseHandler}
               onSave={saveHandler}
+              onDelete={deleteHandler}
             />
           </Col>
           <Col className="my-4" md={6}>

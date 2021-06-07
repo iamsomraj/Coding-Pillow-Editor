@@ -12,6 +12,7 @@ interface FileEditorProps {
   onSelect: (file: IFile) => void;
   onErase: (file: IFile) => void;
   onSave: (file: IFile) => void;
+  onDelete: (file: IFile) => void;
 }
 
 const FileEditor: React.FC<FileEditorProps> = (props) => {
@@ -116,6 +117,12 @@ const FileEditor: React.FC<FileEditorProps> = (props) => {
                     onClick={() => props.onErase(file)}
                   >
                     Erase
+                  </Button>
+                  <Button
+                    className="rounded-0"
+                    onClick={() => props.onDelete(file)}
+                  >
+                    Delete
                   </Button>
                 </div>
               )}
