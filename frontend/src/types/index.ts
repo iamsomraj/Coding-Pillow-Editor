@@ -16,10 +16,11 @@ export interface IUser {
   name: string;
   email: string;
   password: string;
+  token: string;
 }
 
 export interface ILoginUserReducerState {
   loading?: boolean;
-  data: null | IUser;
+  data: IUser | null;
   error?: string;
 }

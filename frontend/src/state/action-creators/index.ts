@@ -21,7 +21,7 @@ export const fetchFiles =
     }
   };
 
-export const login =
+export const loginUser =
   (email: string, password: string) =>
   async (dispatch: Dispatch<loginUserAction>) => {
     try {
@@ -41,6 +41,7 @@ export const login =
         config
       );
 
+      
       dispatch({
         type: loginUserActionTypes.LOGIN_USER_SUCCESS,
         payload: data,
