@@ -2,14 +2,17 @@ import {
   ICreateFileReducerState,
   IFetchFileReducerState,
   IUpdateFileReducerState,
+  IDeleteFileReducerState,
 } from "../../types";
 import {
   createFileActionTypes,
+  deleteFileActionTypes,
   fetchFilesActionTypes,
   updateFileActionTypes,
 } from "../action-types";
 import {
   createFileActions,
+  deleteFileActions,
   fetchFilesAction,
   updateFileActions,
 } from "../actions";
@@ -99,6 +102,38 @@ export const updateFileReducer = (
       };
 
     case updateFileActionTypes.UPDATE_FILE_FAILURE: {
+      return {
+        loading: false,
+        data: null,
+        error: action.payload,
+      };
+    }
+    default:
+      return state;
+  }
+};
+
+const deleteFileInitialState: IDeleteFileReducerState = {
+  data: null,
+};
+
+export const deleteFileReducer = (
+  state = deleteFileInitialState,
+  action: deleteFileActions
+) => {
+  switch (action.type) {
+    case deleteFileActionTypes.DELETE_FILE_REQUEST:
+      return {
+        loading: true,
+        data: null,
+      };
+    case deleteFileActionTypes.DELETE_FILE_SUCCESS:
+      return {
+        loading: false,
+        data: action.payload,
+      };
+
+    case deleteFileActionTypes.DELETE_FILE_FAILURE: {
       return {
         loading: false,
         data: null,

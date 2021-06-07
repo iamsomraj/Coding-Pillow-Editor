@@ -1,6 +1,7 @@
 import { IFile, IUser } from "../../types";
 import {
   createFileActionTypes,
+  deleteFileActionTypes,
   fetchFilesActionTypes,
   loginUserActionTypes,
   registerUserActionTypes,
@@ -63,6 +64,25 @@ export type updateFileActions =
   | updateFileRequestAction
   | updateFileSuccessAction
   | updateFileFailureAction;
+
+export interface deleteFileRequestAction {
+  type: deleteFileActionTypes.DELETE_FILE_REQUEST;
+}
+
+export interface deleteFileSuccessAction {
+  type: deleteFileActionTypes.DELETE_FILE_SUCCESS;
+  payload: IFile;
+}
+
+export interface deleteFileFailureAction {
+  type: deleteFileActionTypes.DELETE_FILE_FAILURE;
+  payload: string;
+}
+
+export type deleteFileActions =
+  | deleteFileRequestAction
+  | deleteFileSuccessAction
+  | deleteFileFailureAction;
 
 export interface loginUserRequestAction {
   type: loginUserActionTypes.LOGIN_USER_REQUEST;

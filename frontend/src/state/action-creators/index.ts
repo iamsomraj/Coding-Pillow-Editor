@@ -2,6 +2,7 @@ import axios from "axios";
 import { Dispatch } from "redux";
 import {
   createFileActionTypes,
+  deleteFileActionTypes,
   fetchFilesActionTypes,
   loginUserActionTypes,
   registerUserActionTypes,
@@ -10,6 +11,7 @@ import {
 
 import {
   createFileActions,
+  deleteFileActions,
   fetchFilesAction,
   loginUserAction,
   updateFileActions,
@@ -110,6 +112,38 @@ export const updateFile =
     } catch (error) {
       dispatch({
         type: updateFileActionTypes.UPDATE_FILE_FAILURE,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
+
+export const deleteFile =
+  (_id: string, name: string, language: string, value: string) =>
+  async (dispatch: Dispatch<deleteFileActions>, getState: any) => {
+    try {
+      dispatch({ type: deleteFileActionTypes.DELETE_FILE_REQUEST });
+      const {
+        loginUser: { data: userInfo },
+      } = getState();
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+
+      const { data } = await axios.delete(`api/files/${_id}`, config);
+
+      dispatch({
+        type: deleteFileActionTypes.DELETE_FILE_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: deleteFileActionTypes.DELETE_FILE_FAILURE,
         payload:
           error.response && error.response.data.message
             ? error.response.data.message

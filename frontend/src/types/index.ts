@@ -23,6 +23,12 @@ export interface IUpdateFileReducerState {
   error?: string;
 }
 
+export interface IDeleteFileReducerState {
+  loading?: boolean;
+  data: IFile | null;
+  error?: string;
+}
+
 export interface IUser {
   _id: string;
   name: string;

@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import {
   createFileReducer,
+  deleteFileReducer,
   fetchFilesReducer,
   updateFileReducer,
 } from "./fileReducer";
@@ -10,6 +11,7 @@ export const rootReducer = combineReducers({
   fetchedFiles: fetchFilesReducer,
   createFile: createFileReducer,
   updateFile: updateFileReducer,
+  deleteFile: deleteFileReducer,
   loginUser: loginUserReducer,
   registerUser: registerUserReducer,
 });
