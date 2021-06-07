@@ -74,21 +74,6 @@ const files = [
     value: jsCode,
   },
   {
-    name: "script1.js",
-    language: "javascript",
-    value: jsCode,
-  },
-  {
-    name: "script2.js",
-    language: "javascript",
-    value: jsCode,
-  },
-  {
-    name: "script3.js",
-    language: "javascript",
-    value: jsCode,
-  },
-  {
     name: "style.css",
     language: "css",
     value: cssCode,
