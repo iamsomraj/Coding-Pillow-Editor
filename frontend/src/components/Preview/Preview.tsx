@@ -2,7 +2,7 @@ import React from "react";
 import { IFile } from "../../types";
 
 interface PreviewProps {
-  currentFile: IFile;
+  currentFile: IFile | undefined;
 }
 
 const Preview: React.FC<PreviewProps> = (props) => {
@@ -15,9 +15,9 @@ const Preview: React.FC<PreviewProps> = (props) => {
         wordWrap: "break-word",
       }}
     >
-      {props.currentFile.value && props.currentFile.value}
-      {!props.currentFile.value &&
-        `Hello there! Type anything in editor.... I wrap everything....`}
+      {!props.currentFile
+        ? `Hello there! Save files to see me change my content.....`
+        : props.currentFile.value}
     </div>
   );
 };

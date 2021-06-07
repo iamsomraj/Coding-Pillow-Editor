@@ -9,6 +9,7 @@ import Message from "../../components/Message/Message";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { IFile } from "../../types";
+import Preview from "../../components/Preview/Preview";
 
 const CodeEditorContainer: React.FC = ({ history }: any) => {
   let [selectedFile, setSelectedFile] = useState<IFile>(Object);
@@ -101,6 +102,16 @@ const CodeEditorContainer: React.FC = ({ history }: any) => {
             </Row>
             <Row className="mb-3">
               <Terminal />
+            </Row>
+          </Col>
+          <Col className="my-4" md={3}>
+            <Row className="mb-2">
+              <div className="mb-4">PREVIEW</div>
+              <Preview
+                currentFile={files.find(
+                  (file) => file._id === selectedFile._id
+                )}
+              />
             </Row>
           </Col>
         </Row>
