@@ -11,7 +11,7 @@ import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { IFile } from "../../types";
 
 const CodeEditorContainer: React.FC = ({ history }: any) => {
-  const [selectedFile, setSelectedFile] = useState<IFile>(Object);
+  let [selectedFile, setSelectedFile] = useState<IFile>(Object);
 
   const { fetchFiles, updateFile } = useActions();
   const {
@@ -34,19 +34,24 @@ const CodeEditorContainer: React.FC = ({ history }: any) => {
   }, [history, userInfo, createdFile, updatedFile]);
 
   const selectFileHandler = (file: IFile) => {
-    setSelectedFile(file);
+    setSelectedFile((pfile) => ({ ...pfile, ...file }));
   };
 
   const eraseHandler = (file: IFile) => {
-    const updatedFile = { ...file, value: "" };
+    const updatedFile = { ...file };
+    updatedFile.value = "";
     updateFile(
       updatedFile._id,
       updatedFile.name,
       updatedFile.language,
       updatedFile.value
     );
-    setSelectedFile((prevFile) => ({ ...prevFile, value: "" }));
-    console.log(selectedFile);
+    setSelectedFile((prevFile) => {
+      return {
+        ...prevFile,
+        ...updatedFile,
+      };
+    });
   };
 
   const editorChangeHandler: OnChange = (enteredValue) => {
@@ -80,7 +85,9 @@ const CodeEditorContainer: React.FC = ({ history }: any) => {
               <div className="mb-4">EDITOR</div>
               <CodeEditor
                 onEditorChange={editorChangeHandler}
-                currentFile={selectedFile}
+                currentFile={files.find(
+                  (file) => file._id === selectedFile._id
+                )}
               />
             </Row>
             <Row className="mb-3">

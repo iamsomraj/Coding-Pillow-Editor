@@ -3,7 +3,7 @@ import { editorConfig } from "../../config/config";
 import { IFile } from "../../types";
 interface CodeEditorProps {
   onEditorChange: OnChange;
-  currentFile: IFile;
+  currentFile: IFile | undefined;
 }
 
 const CodeEditor: React.FC<CodeEditorProps> = (props) => {
