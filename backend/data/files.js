@@ -1,70 +1,48 @@
 const jsCode = `
-let customers = [
-  { _id: 0, name: 'paul' },
-  { _id: 1, name: 'jeff' },
-  { _id: 2, name: 'mary' }
-];
-let customer = customers.find(cust => cust.name === 'jeff');
-console.log(customer);
+const timer = document.querySelector('#time span')
+
+setInterval(() => {
+	timer.innerText = new Date().toLocaleString()
+}, 1000)
 `;
 
 const cssCode = `
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  outline: none;
-}
-
 body {
-  margin: 0;
+	padding: 10px;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
+		Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+	line-height: 1.6;
+	font-size: 18px;
 }
 `;
 
 const htmlCode = `
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="w_idth=device-w_idth, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json prov_ides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the \`public\` folder during the build.
-      Only files ins_ide the \`public\` folder can be referenced from the HTML.
+<!doctype HTML>
+<html>
+	<head>
+		<title>Coding Pillow HTML Playground</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="/style.css" />
+	</head>
+	<body>
+		<h1>Welcome to Coding Pillow</h1>
+		<p>Hey there! This is a HTML/CSS/JS playground!</p>
+		<ul>
+			<li>You can edit these files....!</li>
+			<li>You can play with CSS/JS files</li>
+			<li>You can create files and folders here</li>
+			<li>Feel free to use it as your local development environment</li>
+			<li>hello world</li>
+		</ul>
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-s_ide routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running \`npm run build\`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div _id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run \`npm start\` or \`yarn start\`.
-      To create a production bundle, use \`npm run build\` or \`yarn build\`.
-    -->
-  </body>
+		<div id="time">Time right now: <span></span></div>
+		<script src="https://bit.ly/Coding Pillow-web-console"></script>
+		<script src="/script.js"></script>
+	</body>
 </html>
+
 `;
 
 const files = [

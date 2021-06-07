@@ -1,6 +1,8 @@
 import asyncHandler from "express-async-handler";
 import generateToken from "../utils/generateToken.js";
 import User from "../models/userModel.js";
+import files from "../data/files.js";
+import File from "../models/fileModel.js";
 
 // @desc    Auth user & get token
 // @route   POST /api/users/login
@@ -41,6 +43,15 @@ const registerUser = asyncHandler(async (req, res) => {
     email,
     password,
   });
+
+  const localFiles = files.map((file) => {
+    return {
+      ...file,
+      user: user._id,
+    };
+  });
+
+  await File.insertMany(localFiles);
 
   if (user) {
     res.status(201).json({

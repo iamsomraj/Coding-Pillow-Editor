@@ -98,3 +98,26 @@ export const updateFile = expressAsyncHandler(async (req, res) => {
     throw new Error("file not found");
   }
 });
+
+/**
+ * @description delete file
+ * @route DELETE api/files/:id
+ * @access Private
+ */
+export const deleteFile = expressAsyncHandler(async (req, res) => {
+  const file = await File.findById(req.params.id);
+
+  if (file) {
+    const fileDeleted = await File.deleteOne({ _id: file._id });
+
+    res.json({
+      _id: file._id,
+      name: file.name,
+      language: file.language,
+      value: file.value,
+    });
+  } else {
+    res.status(404);
+    throw new Error("file not found");
+  }
+});
