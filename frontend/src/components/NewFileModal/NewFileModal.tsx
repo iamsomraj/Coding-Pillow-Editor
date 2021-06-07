@@ -17,6 +17,11 @@ const NewFileModal: React.FC<NewFileModalProps> = (props) => {
 
   const createBtnHandler: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
+    if (props.name.trim().length === 0) {
+      setMessage("Invalid file name");
+      return;
+    }
+
     let found = null;
     if (files && files.length > 0) {
       found = files.find((savedFile) => savedFile.name === props.name);
@@ -33,10 +38,10 @@ const NewFileModal: React.FC<NewFileModalProps> = (props) => {
     <Modal show={props.show} onHide={props.handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>Create New File</Modal.Title>
-        {message && <Message>{message}</Message>}
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={createBtnHandler}>
+          {message && <Message>{message}</Message>}
           <Form.Group>
             <Form.Label>File Name</Form.Label>
             <Form.Control

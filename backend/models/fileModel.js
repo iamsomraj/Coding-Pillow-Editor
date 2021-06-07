@@ -13,7 +13,6 @@ const fileSchema = mongoose.Schema(
     },
     value: {
       type: String,
-      required: true,
     },
     language: {
       type: String,

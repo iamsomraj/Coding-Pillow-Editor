@@ -15,15 +15,16 @@ const CodeEditorContainer: React.FC = ({ history }: any) => {
   } = useTypedSelector((state) => state.fetchedFiles);
 
   const { data: userInfo } = useTypedSelector((state) => state.loginUser);
+  const { data: createdFile } = useTypedSelector((state) => state.createFile);
 
   useEffect(() => {
-    if (userInfo) {
+    if (userInfo || (userInfo && createdFile)) {
       fetchFiles();
     } else {
       history.push("/login");
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [history, userInfo]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [history, userInfo, createdFile]);
 
   return (
     <>

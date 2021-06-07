@@ -1,12 +1,17 @@
 import axios from "axios";
 import { Dispatch } from "redux";
 import {
+  createFileActionTypes,
   fetchFilesActionTypes,
   loginUserActionTypes,
   registerUserActionTypes,
 } from "../action-types";
 
-import { fetchFilesAction, loginUserAction } from "../actions";
+import {
+  createFileActions,
+  fetchFilesAction,
+  loginUserAction,
+} from "../actions";
 
 export const fetchFiles =
   () => async (dispatch: Dispatch<fetchFilesAction>, getState: any) => {
@@ -31,6 +36,42 @@ export const fetchFiles =
     } catch (error) {
       dispatch({
         type: fetchFilesActionTypes.FETCH_FILES_FAILURE,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
+
+export const createFile =
+  (name: string, language: string, value: string) =>
+  async (dispatch: Dispatch<createFileActions>, getState: any) => {
+    try {
+      dispatch({ type: createFileActionTypes.CREATE_FILE_REQUEST });
+      const {
+        loginUser: { data: userInfo },
+      } = getState();
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+
+      const { data } = await axios.post(
+        "api/files/",
+        { name, language, value },
+        config
+      );
+
+      dispatch({
+        type: createFileActionTypes.CREATE_FILE_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: createFileActionTypes.CREATE_FILE_FAILURE,
         payload:
           error.response && error.response.data.message
             ? error.response.data.message

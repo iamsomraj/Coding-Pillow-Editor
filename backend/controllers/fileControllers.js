@@ -45,8 +45,6 @@ export const getFileById = expressAsyncHandler(async (req, res) => {
 export const createFile = expressAsyncHandler(async (req, res) => {
   const { name, language, value } = req.body;
 
-  console.log({ ...req.body });
-
   const fileExists = await File.findOne({ name, user: req.user._id });
 
   if (fileExists) {

@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Button, Col, FormControlProps, Row } from "react-bootstrap";
 import { EraserFill } from "react-bootstrap-icons";
+import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { IFile } from "../../types";
 import { fileTypes } from "../../util";
@@ -13,6 +14,7 @@ interface FileEditorProps {
 }
 
 const FileEditor: React.FC<FileEditorProps> = (props) => {
+  const { createFile, fetchFiles } = useActions();
   const { data: files } = useTypedSelector((state) => state.fetchedFiles);
 
   const [show, setShow] = useState(false);
@@ -48,9 +50,8 @@ const FileEditor: React.FC<FileEditorProps> = (props) => {
    * @param event
    * @returns void
    */
-  const saveBtnHandler = () => {
-    // props.onAdd({ ...file, name: file.name.trim(), id: file.name.trim() });
-    console.log({ ...file, name: file.name.trim(), id: file.name.trim() });
+  const createFileHandler = () => {
+    createFile(file.name, file.language, file.value);
     handleClose();
   };
 
@@ -85,7 +86,7 @@ const FileEditor: React.FC<FileEditorProps> = (props) => {
             name={file.name}
             onChange={inputChangeHandler}
             handleClose={handleClose}
-            onSave={saveBtnHandler}
+            onSave={createFileHandler}
           />
         </Col>
       </Row>
