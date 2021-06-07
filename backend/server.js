@@ -9,6 +9,7 @@ connectDB();
 
 const app = express();
 app.use("/api/files", fileRoutes);
+app.use("/api/users", fileRoutes);
 
 
 
