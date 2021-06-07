@@ -10,3 +10,16 @@ export interface IFetchFileReducerState {
   data: IFile[];
   error?: string;
 }
+
+export interface IUser {
+  _id: string;
+  name: string;
+  email: string;
+  password: string;
+}
+
+export interface ILoginUserReducerState {
+  loading?: boolean;
+  data: {} | IUser;
+  error?: string;
+}
