@@ -1,4 +1,4 @@
-export const fileTypes = (fileExt: string) => {
+export const fileTypes = (fileExt: string): string => {
   switch (fileExt) {
     case "html":
       return "html";
@@ -15,5 +15,5 @@ export const fileTypes = (fileExt: string) => {
     case "ts":
       return "typescript";
   }
-  return "javascript";
+  return "";
 };

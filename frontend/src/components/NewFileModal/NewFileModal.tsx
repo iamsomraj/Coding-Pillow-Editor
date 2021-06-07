@@ -1,21 +1,42 @@
+import { useState } from "react";
 import { Button, Form, Modal, FormControlProps } from "react-bootstrap";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import Message from "../Message/Message";
 
 interface NewFileModalProps {
   show: boolean;
   name: string;
   onChange: FormControlProps["onChange"];
-  onSave: React.FormEventHandler<HTMLFormElement>;
+  onSave: () => void;
   handleClose: () => void;
 }
 
 const NewFileModal: React.FC<NewFileModalProps> = (props) => {
+  const [message, setMessage] = useState("");
+  const { data: files } = useTypedSelector((state) => state.fetchedFiles);
+
+  const createBtnHandler: React.FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
+    let found = null;
+    if (files && files.length > 0) {
+      found = files.find((savedFile) => savedFile.name === props.name);
+    }
+
+    if (found) {
+      setMessage("File already exists");
+    }
+
+    props.onSave();
+  };
+
   return (
     <Modal show={props.show} onHide={props.handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>Create New File</Modal.Title>
+        {message && <Message>{message}</Message>}
       </Modal.Header>
       <Modal.Body>
-        <Form onSubmit={props.onSave}>
+        <Form onSubmit={createBtnHandler}>
           <Form.Group>
             <Form.Label>File Name</Form.Label>
             <Form.Control

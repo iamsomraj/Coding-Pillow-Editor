@@ -11,6 +11,12 @@ export interface IFetchFileReducerState {
   error?: string;
 }
 
+export interface ICreateFileReducerState {
+  loading?: boolean;
+  data: IFile | null;
+  error?: string;
+}
+
 export interface IUser {
   _id: string;
   name: string;

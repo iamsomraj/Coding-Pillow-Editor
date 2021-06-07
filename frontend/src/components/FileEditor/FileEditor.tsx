@@ -2,19 +2,18 @@
 import { useState } from "react";
 import { Button, Col, FormControlProps, Row } from "react-bootstrap";
 import { EraserFill } from "react-bootstrap-icons";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { IFile } from "../../types";
 import { fileTypes } from "../../util";
+import NewFileModal from "../NewFileModal/NewFileModal";
 import styles from "./FileEditor.module.css";
 
 interface FileEditorProps {
-  // onAdd: (file: IFile) => void;
   fileList: IFile[];
-  // selectedFile: IFile;
-  // onSelect: (id: string) => void;
-  // onErase: (id: string) => void;
 }
 
 const FileEditor: React.FC<FileEditorProps> = (props) => {
+  const { data: files } = useTypedSelector((state) => state.fetchedFiles);
 
   const [show, setShow] = useState(false);
 
@@ -44,50 +43,34 @@ const FileEditor: React.FC<FileEditorProps> = (props) => {
   };
   const handleShow = () => setShow(true);
 
-  // /**
-  //  * @description: Handles file creation and adds the file to file list
-  //  * @param event
-  //  * @returns void
-  //  */
-  // const saveBtnHandler: React.FormEventHandler<HTMLElement> = (event) => {
-  //   event.preventDefault();
-  //   const found = props.fileList.find(
-  //     (savedFile) => savedFile.name === file.name
-  //   );
+  /**
+   * @description: Handles file creation and adds the file to file list
+   * @param event
+   * @returns void
+   */
+  const saveBtnHandler = () => {
+    // props.onAdd({ ...file, name: file.name.trim(), id: file.name.trim() });
+    console.log({ ...file, name: file.name.trim(), id: file.name.trim() });
+    handleClose();
+  };
 
-  //   /**
-  //    * If file exists, then return
-  //    */
-  //   if (found) {
-  //     return;
-  //   }
-
-  //   props.onAdd({ ...file, name: file.name.trim(), id: file.name.trim() });
-  //   handleClose();
-  // };
-
-  // /**
-  //  * @description Handles input form and determines language from file name
-  //  * @param event
-  //  */
-  // const inputChangeHandler: FormControlProps["onChange"] = (event) => {
-  //   const fileDetail = event.target.value.split(".");
-  //   const fileExt = fileDetail[fileDetail.length - 1];
-  //   const fileLanguage:
-  //     | "html"
-  //     | "css"
-  //     | "javascript"
-  //     | "json"
-  //     | "md"
-  //     | "mjs"
-  //     | "typescript" = fileTypes(fileExt);
-
-  //   setFile({
-  //     name: event.target.value,
-  //     language: fileLanguage,
-  //     value: "",
-  //   });
-  // };
+  /**
+   * @description Handles input form and determines language from file name
+   * @param event
+   */
+  const inputChangeHandler: FormControlProps["onChange"] = (event) => {
+    const fileDetail = event.target.value.split(".");
+    let fileLanguage = "";
+    if (fileDetail.length > 1) {
+      const fileExt = fileDetail[fileDetail.length - 1];
+      fileLanguage = fileTypes(fileExt);
+    }
+    setFile({
+      name: event.target.value,
+      language: fileLanguage,
+      value: "",
+    });
+  };
 
   return (
     <div className="px-3">
@@ -97,13 +80,13 @@ const FileEditor: React.FC<FileEditorProps> = (props) => {
           <Button className="rounded-0" onClick={handleShow}>
             New File
           </Button>
-          {/* <NewFileModal
+          <NewFileModal
             show={show}
             name={file.name}
             onChange={inputChangeHandler}
             handleClose={handleClose}
             onSave={saveBtnHandler}
-          /> */}
+          />
         </Col>
       </Row>
       {props.fileList.map((file) => {

@@ -1,5 +1,6 @@
 import { IFile, IUser } from "../../types";
 import {
+  createFileActionTypes,
   fetchFilesActionTypes,
   loginUserActionTypes,
   registerUserActionTypes,
@@ -23,6 +24,25 @@ export type fetchFilesAction =
   | fetchFilesRequestAction
   | fetchFilesSuccessAction
   | fetchFilesFailureAction;
+
+export interface createFileRequestAction {
+  type: createFileActionTypes.CREATE_FILE_REQUEST;
+}
+
+export interface createFileSuccessAction {
+  type: createFileActionTypes.CREATE_FILE_SUCCESS;
+  payload: IFile;
+}
+
+export interface createFileFailureAction {
+  type: createFileActionTypes.CREATE_FILE_FAILURE;
+  payload: string;
+}
+
+export type createFileActions =
+  | createFileRequestAction
+  | createFileSuccessAction
+  | createFileFailureAction;
 
 export interface loginUserRequestAction {
   type: loginUserActionTypes.LOGIN_USER_REQUEST;

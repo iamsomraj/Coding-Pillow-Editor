@@ -1,13 +1,13 @@
-import { IFetchFileReducerState } from "../../types";
-import { fetchFilesActionTypes } from "../action-types";
-import { fetchFilesAction } from "../actions";
+import { ICreateFileReducerState, IFetchFileReducerState } from "../../types";
+import { createFileActionTypes, fetchFilesActionTypes } from "../action-types";
+import { createFileActions, fetchFilesAction } from "../actions";
 
-const initialState: IFetchFileReducerState = {
+const fetchFilesInitialState: IFetchFileReducerState = {
   data: [],
 };
 
 export const fetchFilesReducer = (
-  state = initialState,
+  state = fetchFilesInitialState,
   action: fetchFilesAction
 ) => {
   switch (action.type) {
@@ -26,6 +26,38 @@ export const fetchFilesReducer = (
       return {
         loading: false,
         data: [],
+        error: action.payload,
+      };
+    }
+    default:
+      return state;
+  }
+};
+
+const createFileInitialState: ICreateFileReducerState = {
+  data: null,
+};
+
+export const createFileReducer = (
+  state = createFileInitialState,
+  action: createFileActions
+) => {
+  switch (action.type) {
+    case createFileActionTypes.CREATE_FILE_REQUEST:
+      return {
+        loading: true,
+        data: null,
+      };
+    case createFileActionTypes.CREATE_FILE_SUCCESS:
+      return {
+        loading: false,
+        data: action.payload,
+      };
+
+    case createFileActionTypes.CREATE_FILE_FAILURE: {
+      return {
+        loading: false,
+        data: null,
         error: action.payload,
       };
     }

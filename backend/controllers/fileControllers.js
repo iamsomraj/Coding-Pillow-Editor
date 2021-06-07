@@ -22,7 +22,7 @@ export const getFiles = expressAsyncHandler(async (req, res) => {
 /**
  * @description fetch file by id
  * @route GET api/files/:id
- * @access Public
+ * @access Private
  */
 export const getFileById = expressAsyncHandler(async (req, res) => {
   const file = await File.findById(req.params.id).populate(
@@ -34,5 +34,42 @@ export const getFileById = expressAsyncHandler(async (req, res) => {
   } else {
     res.status(404);
     throw new Error("File not found");
+  }
+});
+
+/**
+ * @description create file
+ * @route POST api/files/
+ * @access Private
+ */
+export const createFile = expressAsyncHandler(async (req, res) => {
+  const { name, langauge, value } = req.body;
+
+  console.log({ ...req.body });
+
+  const fileExists = await File.findOne({ name, user: req.user._id });
+
+  if (fileExists) {
+    res.status(400);
+    throw new Error("File already exists");
+  }
+
+  const file = await File.create({
+    name: name,
+    langauge: langauge,
+    value: value,
+    user: req.user._id,
+  });
+
+  if (file) {
+    res.status(201).json({
+      _id: file._id,
+      name: file.name,
+      langauge: file.langauge,
+      value: file.value,
+    });
+  } else {
+    res.status(400);
+    throw new Error("Invalid file data");
   }
 });
