@@ -71,3 +71,30 @@ export const createFile = expressAsyncHandler(async (req, res) => {
     throw new Error("Invalid file data");
   }
 });
+
+/**
+ * @description update file content
+ * @route PUT api/files/:id
+ * @access Private
+ */
+export const updateFile = expressAsyncHandler(async (req, res) => {
+  const file = await File.findById(req.params.id);
+
+  if (file) {
+    file.name = req.body.name || file.name;
+    file.language = req.body.language || file.language;
+    file.value = req.body.value || file.value;
+
+    const fileUpdated = await file.save();
+
+    res.json({
+      _id: fileUpdated._id,
+      name: fileUpdated.name,
+      language: fileUpdated.language,
+      value: fileUpdated.value,
+    });
+  } else {
+    res.status(404);
+    throw new Error("file not found");
+  }
+});
