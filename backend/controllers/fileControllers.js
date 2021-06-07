@@ -43,7 +43,7 @@ export const getFileById = expressAsyncHandler(async (req, res) => {
  * @access Private
  */
 export const createFile = expressAsyncHandler(async (req, res) => {
-  const { name, langauge, value } = req.body;
+  const { name, language, value } = req.body;
 
   console.log({ ...req.body });
 
@@ -51,14 +51,14 @@ export const createFile = expressAsyncHandler(async (req, res) => {
 
   if (fileExists) {
     res.status(400);
-    throw new Error("File already exists");
+    throw new Error("File with same name already exists");
   }
 
   const file = await File.create({
-    name: name,
-    langauge: langauge,
-    value: value,
     user: req.user._id,
+    name,
+    value,
+    language,
   });
 
   if (file) {
