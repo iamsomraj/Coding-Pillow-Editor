@@ -11,6 +11,8 @@ const router = express.Router();
 router.get(
   "/",
   expressAsyncHandler(async (req, res) => {
+    throw new Error("File not found");
+
     const files = await File.find({});
     res.json(files);
   })
@@ -28,7 +30,8 @@ router.get(
     if (file) {
       res.json(file);
     } else {
-      res.status(404).json({ message: "File not found" });
+      res.status(404);
+      throw new Error("File not found");
     }
   })
 );

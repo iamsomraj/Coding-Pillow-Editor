@@ -3,6 +3,8 @@
 import { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import FileEditor from "../../components/FileEditor/FileEditor";
+import Loader from "../../components/Loader/Loader";
+import Message from "../../components/Message/Message";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 
@@ -20,38 +22,19 @@ const CodeEditorContainer: React.FC = () => {
 
   return (
     <>
-      <Row className="my-3">
-        <Col className="my-4" md={3}>
-          {files && <FileEditor fileList={files} />}
-        </Col>
-        {/* <Col className="my-4" md={3}>
-          <FileEditor
-            selectedFile={currentFile}
-            onAdd={addFileHandler}
-            onSelect={selectFileHandler}
-            onErase={eraseFileHandler}
-            fileList={files}
-          />
-        </Col>
-        <Col className="my-4" md={6}>
-          <Row className="mb-2">
-            <div className="mb-4">EDITOR</div>
-            <CodeEditor
-              onEditorChange={editorChangeHandler}
-              currentFile={currentFile}
-            />
-          </Row>
-          <Row className="mb-3">
-            <Terminal />
-          </Row>
-        </Col>
-        <Col className="my-4" md={3}>
-          <Row className="mb-2">
-            <div className="mb-4">PREVIEW</div>
-            <Preview currentFile={currentFile} />
-          </Row>
-        </Col> */}
-      </Row>
+      {loading ? (
+        <h2>
+          <Loader />
+        </h2>
+      ) : error ? (
+        <Message>{error}</Message>
+      ) : (
+        <Row className="my-3">
+          <Col className="my-4" md={3}>
+            <FileEditor fileList={files} />
+          </Col>
+        </Row>
+      )}
     </>
   );
 };

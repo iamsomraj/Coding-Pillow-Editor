@@ -5,8 +5,8 @@ export interface IFile {
   value: string;
 }
 
-export interface IReducerState {
+export interface IFetchFileReducerState {
   loading?: boolean;
-  data?: IFile[];
+  data: IFile[];
   error?: string;
 }

@@ -16,8 +16,6 @@ interface FileEditorProps {
 
 const FileEditor: React.FC<FileEditorProps> = (props) => {
 
-  console.log(props.fileList);
-  
   const [show, setShow] = useState(false);
 
   /**
@@ -118,7 +116,7 @@ const FileEditor: React.FC<FileEditorProps> = (props) => {
             // onClick={() => props.onSelect(file.id)}
           >
             <Col className="d-flex justify-content-between align-items-center">
-              {file.name} {file._id}
+              {file.name}
               {/* {props.selectedFile.id === file.id && ( */}
               <EraserFill
                 className={styles.clearBtn}

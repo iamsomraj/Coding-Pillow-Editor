@@ -1,8 +1,10 @@
-import { IReducerState } from "../../types";
+import { IFetchFileReducerState } from "../../types";
 import { fetchFilesActionTypes } from "../action-types";
 import { fetchFilesAction } from "../actions";
 
-const initialState: IReducerState = {};
+const initialState: IFetchFileReducerState = {
+  data: [],
+};
 
 export const fetchFilesReducer = (
   state = initialState,
@@ -12,6 +14,7 @@ export const fetchFilesReducer = (
     case fetchFilesActionTypes.FETCH_FILES_REQUEST:
       return {
         loading: true,
+        data: [],
       };
     case fetchFilesActionTypes.FETCH_FILES_SUCCESS:
       return {
@@ -29,4 +32,3 @@ export const fetchFilesReducer = (
       return state;
   }
 };
-
