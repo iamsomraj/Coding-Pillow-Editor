@@ -11,6 +11,8 @@ import styles from "./FileEditor.module.css";
 
 interface FileEditorProps {
   fileList: IFile[];
+  selectedFile: IFile;
+  onSelect: (file: IFile) => void;
 }
 
 const FileEditor: React.FC<FileEditorProps> = (props) => {
@@ -94,19 +96,21 @@ const FileEditor: React.FC<FileEditorProps> = (props) => {
         return (
           <Row
             key={file._id}
-            // className={`${
-            //   props.selectedFile.id === file.id ? "bg-primary" : "bg-secondary"
-            // }`}
-            // onClick={() => props.onSelect(file.id)}
+            className={`${
+              props.selectedFile._id === file._id
+                ? "bg-primary"
+                : "bg-secondary"
+            }`}
+            onClick={() => props.onSelect(file)}
           >
             <Col className="d-flex justify-content-between align-items-center">
               {file.name}
-              {/* {props.selectedFile.id === file.id && ( */}
-              <EraserFill
-                className={styles.clearBtn}
-                // onClick={() => props.onErase(file.id)}
-              />
-              {/* )} */}
+              {props.selectedFile._id === file._id && (
+                <EraserFill
+                  className={styles.clearBtn}
+                  // onClick={() => props.onErase(file.id)}
+                />
+              )}
             </Col>
           </Row>
         );
