@@ -1,12 +1,12 @@
 export interface IFile {
-  id: string;
+  _id: string;
   name: string;
   language: string;
   value: string;
 }
 
-export interface IFileReducerState {
-  loading: boolean;
-  data: IFile[];
-  error: string | null;
+export interface IReducerState {
+  loading?: boolean;
+  data?: IFile[];
+  error?: string;
 }

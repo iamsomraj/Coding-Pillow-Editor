@@ -1,20 +1,20 @@
 import dotenv from "dotenv";
 import express from "express";
-import files from "./data/files.js";
 import connectDB from "./config/db.js";
+import { errorHandler, pageNotFound } from "./middlewares/error.js";
+import fileRoutes from "./routes/fileRoutes.js";
 
 dotenv.config();
-
-const app = express();
 connectDB();
 
-app.get("/api/files", (req, res) => {
-  res.json(files);
-});
+const app = express();
+app.use("/api/files", fileRoutes);
 
-app.get("/api/files/:id", (req, res) => {
-  res.json(files.find((file) => file.id === req.params.id));
-});
+
+
+app.use(pageNotFound);
+app.use(errorHandler);
+
 
 const PORT = process.env.PORT || 5000;
 

@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import fetchFilesReducer from "./fetchFilesReducer";
+import { fetchFilesReducer } from "./fileReducer";
 
 export const rootReducer = combineReducers({
   fetchedFiles: fetchFilesReducer,

@@ -3,19 +3,19 @@ import { jsCode, cssCode, htmlCode } from "./code";
 
 export const files: IFile[] = [
   {
-    id: "script.js",
+    _id: "script.js",
     name: "script.js",
     language: "javascript",
     value: jsCode,
   },
   {
-    id: "style.css",
+    _id: "style.css",
     name: "style.css",
     language: "css",
     value: cssCode,
   },
   {
-    id: "index.html",
+    _id: "index.html",
     name: "index.html",
     language: "html",
     value: htmlCode,

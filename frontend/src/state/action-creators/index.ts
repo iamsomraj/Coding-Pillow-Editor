@@ -8,6 +8,7 @@ export const fetchFiles =
     dispatch({ type: fetchFilesActionTypes.FETCH_FILES_REQUEST });
     try {
       const { data } = await axios.get("api/files/");
+      
       dispatch({
         type: fetchFilesActionTypes.FETCH_FILES_SUCCESS,
         payload: data,

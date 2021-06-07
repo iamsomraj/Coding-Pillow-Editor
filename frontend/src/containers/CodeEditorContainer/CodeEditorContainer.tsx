@@ -1,150 +1,30 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { OnChange } from "@monaco-editor/react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
-import CodeEditor from "../../components/CodeEditor/CodeEditor";
 import FileEditor from "../../components/FileEditor/FileEditor";
-import Preview from "../../components/Preview/Preview";
-import Terminal from "../../components/Terminal/Terminal";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
-import { IFile } from "../../types";
 
 const CodeEditorContainer: React.FC = () => {
-  /**
-   * @type: array
-   * @description: storing all the files with id, name, value, language
-   */
-  const [files, setFiles] = useState<IFile[]>([]);
-
-  /**
-   * @type: object
-   * @description: stores current selected file object with id, name, value and language
-   */
-  let [currentFile, setCurrentFile] = useState<IFile>(Object);
-
   const { fetchFiles } = useActions();
   const {
     loading,
-    data: fetchedFiles,
+    data: files,
     error,
   } = useTypedSelector((state) => state.fetchedFiles);
 
   useEffect(() => {
-    // fetchFiles();
+    fetchFiles();
   }, []);
-
-  /**
-   *  @type: string[]
-   *  @description: storing all the file names
-   */
-  let fileNames: string[] = [];
-  if (files) fileNames = files.map((file) => file.name);
-
-  /**
-   * @description checks whether the file exists or not
-   * @param id
-   * @returns false if file not present else IFile
-   */
-  const fileExists = (id: string) => {
-    if (id && files && files.length > 0) {
-      const found = files.find((file) => file.id === id);
-      if (found) {
-        return found;
-      } else {
-        return false;
-      }
-    }
-    return false;
-  };
-
-  /**
-   *
-   * @description: updates selected file on file select
-   * @param file
-   */
-  const selectFileHandler = (id: string) => {
-    if (id === null || id.length === 0) return;
-
-    const found = fileExists(id);
-    if (found) {
-      setCurrentFile(found);
-      // currentFile = found;
-    }
-  };
-
-  /**
-   *
-   * @description: updating main files array with a new file
-   * @param file
-   */
-  const addFileHandler = (file: IFile) => {
-    if (fileExists(file.id)) return;
-
-    if (file && file.name && files) {
-      const currFiles = [...files, file];
-      setFiles(currFiles);
-    }
-
-    debugger;
-  };
-
-  /**
-   *
-   * @description Updating file content of the selected file
-   * @param enteredValue
-   * @returns void
-   */
-  const editorChangeHandler: OnChange = (enteredValue) => {
-    const currentSelectedFile = {
-      ...currentFile,
-      value: enteredValue ? enteredValue : "",
-    };
-
-    setCurrentFile((prevFile) => {
-      return {
-        ...prevFile,
-        ...currentSelectedFile,
-      };
-    });
-
-    setFiles((prevFiles) => {
-      return prevFiles.map((file) =>
-        file.id === currentFile.id ? currentSelectedFile : file
-      );
-    });
-  };
-
-  /**
-   * @description erases the file content
-   * @param id
-   * @returns void
-   */
-  const eraseFileHandler = (id: string) => {
-    if (!id || id.length === 0) return;
-
-    const thisFile = fileExists(id);
-
-    if (thisFile) {
-      thisFile.value = "";
-      setCurrentFile((prevFile) => {
-        return {
-          ...prevFile,
-          ...thisFile,
-        };
-      });
-      setFiles((prevFiles) => {
-        return prevFiles.map((file) =>
-          file.id === id ? { ...thisFile } : file
-        );
-      });
-    }
-  };
 
   return (
     <>
       <Row className="my-3">
         <Col className="my-4" md={3}>
+          {files && <FileEditor fileList={files} />}
+        </Col>
+        {/* <Col className="my-4" md={3}>
           <FileEditor
             selectedFile={currentFile}
             onAdd={addFileHandler}
@@ -170,7 +50,7 @@ const CodeEditorContainer: React.FC = () => {
             <div className="mb-4">PREVIEW</div>
             <Preview currentFile={currentFile} />
           </Row>
-        </Col>
+        </Col> */}
       </Row>
     </>
   );
