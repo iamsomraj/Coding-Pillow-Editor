@@ -50,7 +50,6 @@ export type loginUserAction =
 
 export interface registerUserRequestAction {
   type: registerUserActionTypes.REGISTER_USER_REQUEST;
-  payload: IUser;
 }
 
 export interface registerUserSuccessAction {
