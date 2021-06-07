@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Button, Col, FormControlProps, Row } from "react-bootstrap";
 import { EraserFill } from "react-bootstrap-icons";
 import { useActions } from "../../hooks/useActions";
-import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { IFile } from "../../types";
 import { fileTypes } from "../../util";
 import NewFileModal from "../NewFileModal/NewFileModal";
@@ -13,11 +12,11 @@ interface FileEditorProps {
   fileList: IFile[];
   selectedFile: IFile;
   onSelect: (file: IFile) => void;
+  onErase: (file: IFile) => void;
 }
 
 const FileEditor: React.FC<FileEditorProps> = (props) => {
-  const { createFile, fetchFiles } = useActions();
-  const { data: files } = useTypedSelector((state) => state.fetchedFiles);
+  const { createFile } = useActions();
 
   const [show, setShow] = useState(false);
 
@@ -108,7 +107,7 @@ const FileEditor: React.FC<FileEditorProps> = (props) => {
               {props.selectedFile._id === file._id && (
                 <EraserFill
                   className={styles.clearBtn}
-                  // onClick={() => props.onErase(file.id)}
+                  onClick={() => props.onErase(file)}
                 />
               )}
             </Col>

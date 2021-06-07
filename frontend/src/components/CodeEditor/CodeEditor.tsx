@@ -12,7 +12,7 @@ Create a new file...
 Select it to experience the editor..
 `;
 
-  if (!props.currentFile) {
+  if (!props.currentFile || !props.currentFile._id) {
     return (
       <Editor
         height={editorConfig.height}

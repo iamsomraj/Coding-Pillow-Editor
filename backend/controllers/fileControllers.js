@@ -82,8 +82,8 @@ export const updateFile = expressAsyncHandler(async (req, res) => {
 
   if (file) {
     file.name = req.body.name || file.name;
-    file.language = req.body.language || file.language;
-    file.value = req.body.value || file.value;
+    file.language = req.body.language;
+    file.value = req.body.value;
 
     const fileUpdated = await file.save();
 

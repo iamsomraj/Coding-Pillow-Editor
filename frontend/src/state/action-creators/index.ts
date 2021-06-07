@@ -1,6 +1,5 @@
 import axios from "axios";
 import { Dispatch } from "redux";
-import { IFile } from "../../types";
 import {
   createFileActionTypes,
   fetchFilesActionTypes,
@@ -84,7 +83,7 @@ export const createFile =
   };
 
 export const updateFile =
-  (file: IFile) =>
+  (_id: string, name: string, language: string, value: string) =>
   async (dispatch: Dispatch<updateFileActions>, getState: any) => {
     try {
       dispatch({ type: updateFileActionTypes.UPDATE_FILE_REQUEST });
@@ -99,8 +98,8 @@ export const updateFile =
       };
 
       const { data } = await axios.put(
-        `api/files/${file._id}`,
-        { ...file },
+        `api/files/${_id}`,
+        { name, language, value },
         config
       );
 
