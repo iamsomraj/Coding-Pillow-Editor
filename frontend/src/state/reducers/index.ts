@@ -1,10 +1,11 @@
 import { combineReducers } from "redux";
 import { fetchFilesReducer } from "./fileReducer";
-import { userLoginReducer } from "./userReducer";
+import { loginUserReducer, registerUserReducer } from "./userReducer";
 
 export const rootReducer = combineReducers({
   fetchedFiles: fetchFilesReducer,
-  loginUser: userLoginReducer,
+  loginUser: loginUserReducer,
+  registerUser: registerUserReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

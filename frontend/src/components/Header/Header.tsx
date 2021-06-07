@@ -42,12 +42,7 @@ const Header: React.FC = () => {
       </LinkContainer>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
-          {loggedIn}
-          <LinkContainer to="/about">
-            <Nav.Link>About</Nav.Link>
-          </LinkContainer>
-        </Nav>
+        <Nav className="ml-auto">{loggedIn}</Nav>
       </Navbar.Collapse>
     </Navbar>
   );

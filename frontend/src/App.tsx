@@ -10,7 +10,7 @@ function App() {
     <Router>
       <Header />
       <div className="container-fluid">
-        <Route path="/" component={CodeEditorContainer} exact />
+        <Route path="/editor" component={CodeEditorContainer} exact />
         <Route path="/login" component={LoginUserContainer} exact />
       </div>
     </Router>
