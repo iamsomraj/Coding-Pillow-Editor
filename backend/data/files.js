@@ -1,24 +1,19 @@
-const jsCode = `
-const timer = document.querySelector('#time span')
+const jsCode = `const timer = document.querySelector('#time span')
 
 setInterval(() => {
 	timer.innerText = new Date().toLocaleString()
-}, 1000)
-`;
+}, 1000)`;
 
-const cssCode = `
-body {
+const cssCode = `body {
 	padding: 10px;
 	margin: 0;
 	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
 		Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 	line-height: 1.6;
 	font-size: 18px;
-}
-`;
+}`;
 
-const htmlCode = `
-<!doctype HTML>
+const htmlCode = `<!doctype HTML>
 <html>
 	<head>
 		<title>Coding Pillow HTML Playground</title>
@@ -41,9 +36,7 @@ const htmlCode = `
 		<script src="https://bit.ly/Coding Pillow-web-console"></script>
 		<script src="/script.js"></script>
 	</body>
-</html>
-
-`;
+</html>`;
 
 const files = [
   {
