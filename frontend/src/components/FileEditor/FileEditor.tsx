@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from "react";
 import { Button, Col, FormControlProps, Row } from "react-bootstrap";
+import { FileImage } from "react-bootstrap-icons";
 import { useActions } from "../../hooks/useActions";
 import { IFile } from "../../types";
 import { fileTypes } from "../../util";
+import FileItem from "../FileItem/FileItem";
 import NewFileModal from "../NewFileModal/NewFileModal";
 
 interface FileEditorProps {
@@ -93,41 +95,15 @@ const FileEditor: React.FC<FileEditorProps> = (props) => {
       </Row>
       {props.fileList.map((file) => {
         return (
-          <Row
+          <FileItem
             key={file._id}
-            className={`${
-              props.selectedFile._id === file._id
-                ? "bg-primary"
-                : "bg-secondary"
-            }`}
-            onClick={() => props.onSelect(file)}
-          >
-            <Col className="d-flex p-2 justify-content-between align-items-center">
-              {file.name}
-              {props.selectedFile._id === file._id && (
-                <div>
-                  <Button
-                    className="rounded-0"
-                    onClick={() => props.onSave(file)}
-                  >
-                    Save
-                  </Button>
-                  <Button
-                    className="rounded-0"
-                    onClick={() => props.onErase(file)}
-                  >
-                    Erase
-                  </Button>
-                  <Button
-                    className="rounded-0"
-                    onClick={() => props.onDelete(file)}
-                  >
-                    Delete
-                  </Button>
-                </div>
-              )}
-            </Col>
-          </Row>
+            selectedFile={props.selectedFile}
+            file={file}
+            onDelete={props.onDelete}
+            onErase={props.onErase}
+            onSave={props.onSave}
+            onSelect={props.onSelect}
+          />
         );
       })}
     </div>

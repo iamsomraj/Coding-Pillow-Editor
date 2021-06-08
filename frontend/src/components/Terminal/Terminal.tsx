@@ -21,6 +21,7 @@ const Terminal: React.FC = (props) => {
       color="white"
       outputColor="yellow"
       style={{
+        fontSize: "1rem",
         padding: "1rem 2rem",
       }}
       startState="maximised"
