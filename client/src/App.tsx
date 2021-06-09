@@ -6,7 +6,7 @@ import LoginUserContainer from "./containers/LoginUserContainer/LoginUserContain
 import RegisterUserContainer from "./containers/RegisterUserContainer/RegisterUserContainer";
 import { store } from "./state";
 
-function App() {
+const App: React.FC = () => {
   const components = (
     <Router>
       <Header />
@@ -19,6 +19,6 @@ function App() {
     </Router>
   );
   return <Provider store={store}>{components}</Provider>;
-}
+};
 
 export default App;
