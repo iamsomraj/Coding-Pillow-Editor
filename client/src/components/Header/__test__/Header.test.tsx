@@ -1,5 +1,7 @@
 import "@testing-library/jest-dom/extend-expect";
 import { BrowserRouter as Router } from "react-router-dom";
+import { createStore } from "redux";
+import { rootReducer } from "../../../state";
 import { store } from "../../../state/store";
 import { render } from "../../TestUtil/TestUtil";
 import Header from "../Header";
@@ -66,14 +68,63 @@ test("login link container correctly redirects to a login page", () => {
 });
 
 test("register link container correctly redirects to a register page", () => {
+  const options = {
+    initialState: {},
+    store: store,
+  };
   const { getByTestId } = render(
     <Router>
       <Header />
-    </Router>
+    </Router>,
+    options
   );
   const registerLinkContainerEl = getByTestId("register-link-container");
   expect(registerLinkContainerEl.getAttribute("href")).toBe("/register");
   expect(registerLinkContainerEl.getAttribute("data-rb-event-key")).toBe(
     "/register"
   );
+});
+
+test("logout navigation link renders when user signs into the system", () => {
+  const loggedInUser: any = {
+    loginUser: { data: { name: "Somraj" } },
+  };
+  const options = {
+    initialState: loggedInUser,
+    store: createStore(rootReducer, loggedInUser),
+  };
+  const { getByTestId } = render(
+    <Router>
+      <Header />
+    </Router>,
+    options
+  );
+  const logoutLinkContainerEl = getByTestId("logout-link-container");
+  expect(logoutLinkContainerEl.getAttribute("href")).toBe("/login");
+  expect(logoutLinkContainerEl.getAttribute("data-rb-event-key")).toBe(
+    "/login"
+  );
+});
+
+test("user name shows up when user signs into the system", () => {
+  const loggedInUser: any = {
+    loginUser: { data: { name: "Somraj" } },
+  };
+  const options = {
+    initialState: loggedInUser,
+    store: createStore(rootReducer, loggedInUser),
+  };
+  const { getByTestId } = render(
+    <Router>
+      <Header />
+    </Router>,
+    options
+  );
+  const userNameEl = getByTestId("user-name");
+  expect(userNameEl).toBeInTheDocument();
+  expect(
+    userNameEl.textContent
+      ?.toString()
+      .includes(loggedInUser.loginUser.data.name)
+  ).toBeTruthy();
 });

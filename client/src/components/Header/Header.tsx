@@ -23,8 +23,8 @@ const Header: React.FC = () => {
   if (userInfo) {
     links = (
       <>
-        <Navbar.Brand>{`Hello ${userInfo.name}!`}</Navbar.Brand>
-        <LinkContainer to="/login">
+        <Navbar.Brand data-testid="user-name">{`Hello ${userInfo.name}!`}</Navbar.Brand>
+        <LinkContainer data-testid="logout-link-container" to="/login">
           <Nav.Link onClick={logoutHandler}>Logout</Nav.Link>
         </LinkContainer>
       </>
