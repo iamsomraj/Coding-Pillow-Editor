@@ -6,7 +6,7 @@ import { store } from "../../../state/store";
 import { render } from "../../TestUtil/TestUtil";
 import Header from "../Header";
 
-test("Brand name renders correctly", () => {
+test("brand name renders correctly", () => {
   const options = {
     initialState: {},
     store: store,
@@ -21,7 +21,7 @@ test("Brand name renders correctly", () => {
   expect(brandEl.textContent).toBe("Coding Pillow Editor");
 });
 
-test("Login link initially present in the header", () => {
+test("login link initially present in the header", () => {
   const options = {
     initialState: {},
     store: store,
