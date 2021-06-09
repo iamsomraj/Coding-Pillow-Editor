@@ -50,11 +50,30 @@ test("register link initially present in the header", () => {
 });
 
 test("login link container correctly redirects to a login page", () => {
+  const options = {
+    initialState: {},
+    store: store,
+  };
+  const { getByTestId } = render(
+    <Router>
+      <Header />
+    </Router>,
+    options
+  );
+  const loginLinkContainerEl = getByTestId("login-link-container");
+  expect(loginLinkContainerEl.getAttribute("href")).toBe("/login");
+  expect(loginLinkContainerEl.getAttribute("data-rb-event-key")).toBe("/login");
+});
+
+test("register link container correctly redirects to a register page", () => {
   const { getByTestId } = render(
     <Router>
       <Header />
     </Router>
   );
-  const loginLinkContainerEl = getByTestId("login-link-container");
-  expect(loginLinkContainerEl.getAttribute("href")).toBe("/login");
+  const registerLinkContainerEl = getByTestId("register-link-container");
+  expect(registerLinkContainerEl.getAttribute("href")).toBe("/register");
+  expect(registerLinkContainerEl.getAttribute("data-rb-event-key")).toBe(
+    "/register"
+  );
 });
