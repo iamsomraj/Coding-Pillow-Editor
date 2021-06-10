@@ -11,10 +11,12 @@ dotenv.config();
 connectDB();
 
 const app = express();
+const isProd = process.env.NODE_ENV !== "production";
 
-if (process.env.NODE_ENV !== "production") {
+if (isProd) {
   app.use(cors());
 }
+
 app.use(express.json());
 
 app.use("/api/files", fileRoutes);
@@ -22,7 +24,7 @@ app.use("/api/users", userRoutes);
 
 const __dirname = path.resolve();
 
-if (process.env.NODE_ENV === "production") {
+if (isProd) {
   app.use(express.static(path.join(__dirname, "/client/build")));
 
   app.get("*", (req, res) =>
