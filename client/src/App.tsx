@@ -13,7 +13,7 @@ const App: React.FC = () => {
       <div className="container-fluid">
         <Route path="/editor" component={CodeEditorContainer} exact />
         <Route path="/login" component={LoginUserContainer} exact />
-        <Route path="/" component={LoginUserContainer} />
+        <Route path="/" component={LoginUserContainer} exact />
         <Route path="/register" component={RegisterUserContainer} exact />
       </div>
     </Router>
