@@ -86,50 +86,42 @@ const CodeEditorContainer: React.FC = ({ history }: any) => {
 
   return (
     <>
-      {loading ? (
-        <h2>
-          <Loader />
-        </h2>
-      ) : error ? (
-        <Message>{error}</Message>
-      ) : (
-        <Row className="my-3">
-          <Col className="my-4" md={3}>
-            <FileEditor
-              fileList={files}
-              selectedFile={selectedFile}
-              onSelect={selectFileHandler}
-              onErase={eraseHandler}
-              onSave={saveHandler}
-              onDelete={deleteHandler}
+      <Row>
+        {error && <Message>{error}</Message>}
+        {loading && <Loader />}
+      </Row>
+      <Row className="my-3">
+        <Col className="my-4" md={3}>
+          <FileEditor
+            fileList={files}
+            selectedFile={selectedFile}
+            onSelect={selectFileHandler}
+            onErase={eraseHandler}
+            onSave={saveHandler}
+            onDelete={deleteHandler}
+          />
+        </Col>
+        <Col className="my-4" md={6}>
+          <Row className="mb-2">
+            <div className="mb-4">EDITOR</div>
+            <CodeEditor
+              onEditorChange={editorChangeHandler}
+              currentFile={files.find((file) => file._id === selectedFile._id)}
             />
-          </Col>
-          <Col className="my-4" md={6}>
-            <Row className="mb-2">
-              <div className="mb-4">EDITOR</div>
-              <CodeEditor
-                onEditorChange={editorChangeHandler}
-                currentFile={files.find(
-                  (file) => file._id === selectedFile._id
-                )}
-              />
-            </Row>
-            <Row className="mb-3">
-              <Terminal />
-            </Row>
-          </Col>
-          <Col className="my-4" md={3}>
-            <Row className="mb-2">
-              <div className="mb-4">PREVIEW</div>
-              <Preview
-                currentFile={files.find(
-                  (file) => file._id === selectedFile._id
-                )}
-              />
-            </Row>
-          </Col>
-        </Row>
-      )}
+          </Row>
+          <Row className="mb-3">
+            <Terminal />
+          </Row>
+        </Col>
+        <Col className="my-4" md={3}>
+          <Row className="mb-2">
+            <div className="mb-4">PREVIEW</div>
+            <Preview
+              currentFile={files.find((file) => file._id === selectedFile._id)}
+            />
+          </Row>
+        </Col>
+      </Row>
     </>
   );
 };
