@@ -22,7 +22,7 @@ const NewFileModal: React.FC<NewFileModalProps> = (props) => {
       return;
     }
 
-    let found = null;
+    let found;
     if (files && files.length > 0) {
       found = files.find((savedFile) => savedFile.name === props.name);
     }
