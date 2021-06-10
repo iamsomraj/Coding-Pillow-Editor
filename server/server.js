@@ -11,9 +11,9 @@ dotenv.config();
 connectDB();
 
 const app = express();
-const isProd = process.env.NODE_ENV !== "production";
+const isProd = process.env.NODE_ENV === "production";
 
-if (isProd) {
+if (!isProd) {
   app.use(cors());
 }
 
