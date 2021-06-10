@@ -1,4 +1,4 @@
-import axios from "axios";
+import Axios from "axios";
 import { Dispatch } from "redux";
 import {
   createFileActionTypes,
@@ -16,6 +16,11 @@ import {
   loginUserAction,
   updateFileActions,
 } from "../actions";
+
+const axios = Axios.create({
+  baseURL:
+    window.location.hostname === "localhost" ? "http://localhost:5000" : "",
+});
 
 export const fetchFiles =
   () => async (dispatch: Dispatch<fetchFilesAction>, getState: any) => {
