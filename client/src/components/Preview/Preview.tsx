@@ -8,6 +8,7 @@ interface PreviewProps {
 const Preview: React.FC<PreviewProps> = (props) => {
   return (
     <div
+      data-testid="preview"
       className="bg-white text-dark mx-3 p-3"
       style={{
         height: "75vh",
