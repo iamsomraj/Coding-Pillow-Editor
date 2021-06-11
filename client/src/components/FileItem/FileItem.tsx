@@ -28,18 +28,21 @@ const FileItem: React.FC<FileItemProps> = (props) => {
         {props.selectedFile._id === props.file._id && (
           <div>
             <Button
+              data-testid="file-item__save-btn"
               className="rounded-0 btn-sm"
               onClick={() => props.onSave(props.file)}
             >
               Save
             </Button>
             <Button
+              data-testid="file-item__erase-btn"
               className="rounded-0 btn-sm"
               onClick={() => props.onErase(props.file)}
             >
               Erase
             </Button>
             <Button
+              data-testid="file-item__delete-btn"
               className="rounded-0 btn-sm btn-danger"
               onClick={() => props.onDelete(props.file)}
             >
