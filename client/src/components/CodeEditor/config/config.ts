@@ -1,4 +1,4 @@
 export const editorConfig = {
-  height: "50vh",
+  height: "65vh",
   theme: "vs-dark",
 };

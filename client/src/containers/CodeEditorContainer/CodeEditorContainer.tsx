@@ -10,11 +10,12 @@ import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { IFile } from "../../types";
 import Preview from "../../components/Preview/Preview";
+import Flexi from "../../components/Flexi/Flexi";
 
 const CodeEditorContainer: React.FC = ({ history }: any) => {
   let [selectedFile, setSelectedFile] = useState<IFile>(Object);
 
-  const { fetchFiles, updateFile, deleteFile, logout  } = useActions();
+  const { fetchFiles, updateFile, deleteFile, logout } = useActions();
   const {
     loading,
     data: files,
@@ -42,6 +43,8 @@ const CodeEditorContainer: React.FC = ({ history }: any) => {
   }, [history, userInfo, createdFile, updatedFile, deletedFile]);
 
   const selectFileHandler = (file: IFile) => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+
     setSelectedFile((pfile) => ({ ...pfile, ...file }));
   };
 
@@ -87,40 +90,46 @@ const CodeEditorContainer: React.FC = ({ history }: any) => {
 
   return (
     <>
-      <Row>
-        {error && <Message>{error}</Message>}
-        {loading && <Loader />}
-      </Row>
-      <Row className="my-3">
-        <Col className="my-4" md={3}>
-          <FileEditor
-            fileList={files}
-            selectedFile={selectedFile}
-            onSelect={selectFileHandler}
-            onErase={eraseHandler}
-            onSave={saveHandler}
-            onDelete={deleteHandler}
-          />
-        </Col>
-        <Col className="my-4" md={6}>
-          <Row className="mb-2">
-            <div className="mb-4">EDITOR</div>
-            <CodeEditor
-              onEditorChange={editorChangeHandler}
-              currentFile={files.find((file) => file._id === selectedFile._id)}
+      <Row className="m-0 pt-3">
+        <Col md={3}>
+          <Flexi>
+            <FileEditor
+              fileList={files}
+              selectedFile={selectedFile}
+              onSelect={selectFileHandler}
+              onErase={eraseHandler}
+              onSave={saveHandler}
+              onDelete={deleteHandler}
             />
-          </Row>
-          <Row className="mb-3">
-            <Terminal />
-          </Row>
+          </Flexi>
         </Col>
-        <Col className="my-4" md={3}>
-          <Row className="mb-2">
+        <Col md={6}>
+          <Flexi>
+            <Row>
+              {error && <Message>{error}</Message>}
+              {loading && <Loader />}
+            </Row>
+            <Row className="mb-2 px-4">
+              <div className="mb-4">EDITOR</div>
+              <CodeEditor
+                onEditorChange={editorChangeHandler}
+                currentFile={files.find(
+                  (file) => file._id === selectedFile._id
+                )}
+              />
+            </Row>
+            <Row className="mb-3">
+              <Terminal />
+            </Row>
+          </Flexi>
+        </Col>
+        <Col md={3}>
+          <Flexi>
             <div className="mb-4">PREVIEW</div>
             <Preview
               currentFile={files.find((file) => file._id === selectedFile._id)}
             />
-          </Row>
+          </Flexi>
         </Col>
       </Row>
     </>

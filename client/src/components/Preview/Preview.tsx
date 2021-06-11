@@ -9,10 +9,9 @@ const Preview: React.FC<PreviewProps> = (props) => {
   return (
     <div
       data-testid="preview"
-      className="bg-white text-dark mx-3 p-3"
+      className="bg-white text-dark p-2"
       style={{
-        height: "75vh",
-        width: "90%",
+        minHeight: "80vh",
         wordWrap: "break-word",
       }}
     >

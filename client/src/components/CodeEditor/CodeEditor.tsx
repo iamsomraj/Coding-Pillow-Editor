@@ -1,5 +1,5 @@
 import Editor, { OnChange } from "@monaco-editor/react";
-import { editorConfig } from "../../config/config";
+import { editorConfig } from "./config/config";
 import { IFile } from "../../types";
 interface CodeEditorProps {
   onEditorChange: OnChange;
