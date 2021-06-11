@@ -20,7 +20,10 @@ const FileItem: React.FC<FileItemProps> = (props) => {
       }`}
       onClick={() => props.onSelect(props.file)}
     >
-      <Col className="d-flex p-2 justify-content-between align-items-center">
+      <Col
+        data-testid="file-item"
+        className="d-flex p-2 justify-content-between align-items-center"
+      >
         {props.file.name}
         {props.selectedFile._id === props.file._id && (
           <div>
