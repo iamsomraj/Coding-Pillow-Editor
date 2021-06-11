@@ -16,7 +16,7 @@ const cssCode = `body {
 const htmlCode = `<!doctype HTML>
 <html>
 	<head>
-		<title>Coding Pillow HTML Playground</title>
+		<title>Coding Pillow Editor</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="/style.css" />
@@ -31,9 +31,8 @@ const htmlCode = `<!doctype HTML>
 			<li>Feel free to use it as your local development environment</li>
 			<li>hello world</li>
 		</ul>
-
 		<div id="time">Time right now: <span></span></div>
-		<script src="https://bit.ly/Coding Pillow-web-console"></script>
+		<script src="http://codingpilloweditor.herokuapp.com/"></script>
 		<script src="/script.js"></script>
 	</body>
 </html>`;

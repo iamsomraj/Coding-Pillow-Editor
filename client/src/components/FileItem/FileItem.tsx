@@ -1,4 +1,5 @@
 import { Button, Col, Row } from "react-bootstrap";
+import { FileTextFill } from "react-bootstrap-icons";
 import { IFile } from "../../types";
 
 interface FileItemProps {
@@ -24,6 +25,7 @@ const FileItem: React.FC<FileItemProps> = (props) => {
         data-testid="file-item"
         className="d-flex p-2 justify-content-between align-items-center"
       >
+        <FileTextFill />
         {props.file.name}
         {props.selectedFile._id === props.file._id && (
           <div>
