@@ -81,7 +81,11 @@ const FileEditor: React.FC<FileEditorProps> = (props) => {
       <div className="m-0 mb-4">FILES</div>
       <Row className="mb-4">
         <Col className="m-0 p-0">
-          <Button className="rounded-0" onClick={handleShow}>
+          <Button
+            data-testid="new-file-btn"
+            className="rounded-0"
+            onClick={handleShow}
+          >
             New File
           </Button>
           <NewFileModal

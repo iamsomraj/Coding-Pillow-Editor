@@ -36,7 +36,11 @@ const NewFileModal: React.FC<NewFileModalProps> = (props) => {
   };
 
   return (
-    <Modal show={props.show} onHide={props.handleClose}>
+    <Modal
+      data-testid="new-file-modal"
+      show={props.show}
+      onHide={props.handleClose}
+    >
       <Modal.Header closeButton>
         <Modal.Title>Create New File</Modal.Title>
       </Modal.Header>
