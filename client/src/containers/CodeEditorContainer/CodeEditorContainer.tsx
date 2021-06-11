@@ -14,7 +14,7 @@ import Preview from "../../components/Preview/Preview";
 const CodeEditorContainer: React.FC = ({ history }: any) => {
   let [selectedFile, setSelectedFile] = useState<IFile>(Object);
 
-  const { fetchFiles, updateFile, deleteFile } = useActions();
+  const { fetchFiles, updateFile, deleteFile, logout  } = useActions();
   const {
     loading,
     data: files,
@@ -36,6 +36,7 @@ const CodeEditorContainer: React.FC = ({ history }: any) => {
       fetchFiles();
     } else {
       history.push("/login");
+      logout();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [history, userInfo, createdFile, updatedFile, deletedFile]);
