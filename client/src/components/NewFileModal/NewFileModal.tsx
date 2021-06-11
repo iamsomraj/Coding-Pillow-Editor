@@ -50,6 +50,7 @@ const NewFileModal: React.FC<NewFileModalProps> = (props) => {
           <Form.Group>
             <Form.Label>File Name</Form.Label>
             <Form.Control
+              data-testid="file-name-input"
               name="file-name"
               type="text"
               value={props.name}
@@ -60,11 +61,17 @@ const NewFileModal: React.FC<NewFileModalProps> = (props) => {
               File name should contain it's extension
             </Form.Text>
           </Form.Group>
-          <Button type="submit">Create</Button>
+          <Button data-testid="create-file-btn" type="submit">
+            Create
+          </Button>
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={props.handleClose}>
+        <Button
+          data-testid="close-modal-btn"
+          variant="secondary"
+          onClick={props.handleClose}
+        >
           Close
         </Button>
       </Modal.Footer>
