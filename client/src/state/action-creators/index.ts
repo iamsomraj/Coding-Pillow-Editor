@@ -181,6 +181,8 @@ export const loginUser =
         type: loginUserActionTypes.LOGIN_USER_SUCCESS,
         payload: data,
       });
+
+      localStorage.setItem("userInfo", JSON.stringify(data));
     } catch (error) {
       dispatch({
         type: loginUserActionTypes.LOGIN_USER_FAILURE,
@@ -194,6 +196,7 @@ export const loginUser =
 
 export const logout = () => (dispatch: Dispatch<loginUserAction>) => {
   dispatch({ type: loginUserActionTypes.LOGOUT_USER });
+  localStorage.setItem("userInfo", JSON.stringify(null));
   document.location.href = "/login";
 };
 
@@ -231,6 +234,8 @@ export const register =
         type: loginUserActionTypes.LOGIN_USER_SUCCESS,
         payload: data,
       });
+
+      localStorage.setItem("userInfo", JSON.stringify(data));
     } catch (error) {
       dispatch({
         type: registerUserActionTypes.REGISTER_USER_FAILURE,
@@ -241,40 +246,3 @@ export const register =
       });
     }
   };
-
-// export const getUserDetails = (id) => async (dispatch, getState) => {
-//   try {
-//     dispatch({
-//       type: USER_DETAILS_REQUEST,
-//     })
-
-// const {
-//   userLogin: { userInfo },
-// } = getState()
-
-// const config = {
-//   headers: {
-//     Authorization: `Bearer ${userInfo.token}`,
-//   },
-// }
-
-// const { data } = await axios.get(`/api/users/${id}`, config)
-
-//     dispatch({
-//       type: USER_DETAILS_SUCCESS,
-//       payload: data,
-//     })
-//   } catch (error) {
-//     const message =
-//       error.response && error.response.data.message
-//         ? error.response.data.message
-//         : error.message
-//     if (message === 'Not authorized, token failed') {
-//       dispatch(logout())
-//     }
-//     dispatch({
-//       type: USER_DETAILS_FAIL,
-//       payload: message,
-//     })
-//   }
-// }
