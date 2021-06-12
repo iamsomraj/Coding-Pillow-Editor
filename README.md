@@ -18,7 +18,7 @@ You can either use Coding Pillow Editor now with the help of `live version` or s
 
 ## Status of CI/CD Setup
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/iamsomraj/Coding-Pillow-Editor/Deploy)
+![GitHub Workflow Status](https://github.com/iamsomraj/Coding-Pillow-Editor/actions/workflows/main.yml/badge.svg)
 
 ![GitHub Workflow Status](https://github.com/iamsomraj/Coding-Pillow-Editor/actions/workflows/unit-tests.yml/badge.svg)
 
