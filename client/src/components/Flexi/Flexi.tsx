@@ -6,18 +6,18 @@ import { Resizable } from "re-resizable";
 
 const Flexi: React.FC = (props) => {
   const style = {
-    borderLeft: "solid 2px #444",
-    borderRight: "solid 2px #444",
+    borderLeft: "solid 3px #444",
+    borderRight: "solid 3px #444",
   };
 
   return (
     <Resizable
       bounds="parent"
       style={style}
-      minWidth="85%"
+      minWidth="90%"
       minHeight="100%"
       defaultSize={{
-        width: "90%",
+        width: "100%",
         height: "90%",
       }}
     >

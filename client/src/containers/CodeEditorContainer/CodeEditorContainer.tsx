@@ -91,7 +91,7 @@ const CodeEditorContainer: React.FC = ({ history }: any) => {
   return (
     <>
       <Row className="m-0 pt-3">
-        <Col md={4}>
+        <Col md={3}>
           <Flexi>
             <FileEditor
               fileList={files}
@@ -103,7 +103,7 @@ const CodeEditorContainer: React.FC = ({ history }: any) => {
             />
           </Flexi>
         </Col>
-        <Col md={5}>
+        <Col md={6}>
           <Flexi>
             <Row>
               {error && <Message>{error}</Message>}
