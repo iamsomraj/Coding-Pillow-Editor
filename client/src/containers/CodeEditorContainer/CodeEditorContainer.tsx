@@ -91,7 +91,7 @@ const CodeEditorContainer: React.FC = ({ history }: any) => {
   return (
     <>
       <Row className="m-0 pt-3">
-        <Col md={3}>
+        <Col md={4}>
           <Flexi>
             <FileEditor
               fileList={files}
@@ -103,14 +103,16 @@ const CodeEditorContainer: React.FC = ({ history }: any) => {
             />
           </Flexi>
         </Col>
-        <Col md={6}>
+        <Col md={5}>
           <Flexi>
             <Row>
               {error && <Message>{error}</Message>}
               {loading && <Loader />}
             </Row>
             <Row className="mb-2 px-4">
-              <div className="mb-4">EDITOR</div>
+              <div data-testid="code-editor" className="mb-4">
+                EDITOR
+              </div>
               <CodeEditor
                 onEditorChange={editorChangeHandler}
                 currentFile={files.find(
@@ -118,14 +120,16 @@ const CodeEditorContainer: React.FC = ({ history }: any) => {
                 )}
               />
             </Row>
-            <Row className="mb-3">
+            <Row data-testid="terminal" className="mb-3">
               <Terminal />
             </Row>
           </Flexi>
         </Col>
         <Col md={3}>
           <Flexi>
-            <div className="mb-4">PREVIEW</div>
+            <div data-testid="preview" className="mb-4">
+              PREVIEW
+            </div>
             <Preview
               currentFile={files.find((file) => file._id === selectedFile._id)}
             />
