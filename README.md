@@ -18,9 +18,9 @@ You can either use Coding Pillow Editor now with the help of `live version` or s
 
 ## Status of CI/CD Setup
 
-![GitHub Workflow Status](https://github.com/iamsomraj/Coding-Pillow-Editor/actions/workflows/main.yml/badge.svg)
+![Deploy](https://github.com/iamsomraj/Coding-Pillow-Editor/actions/workflows/main.yml/badge.svg)
 
-![GitHub Workflow Status](https://github.com/iamsomraj/Coding-Pillow-Editor/actions/workflows/unit-tests.yml/badge.svg)
+![Client Unit Test](https://github.com/iamsomraj/Coding-Pillow-Editor/actions/workflows/unit-tests.yml/badge.svg)
 
 
 ## Documentation
@@ -118,16 +118,6 @@ These are available API end-points for our server
 | Access    | Route                | Description      |
 | :-------- | :------------------- | :--------------- |
 | `private` | `/api/users/profile` | Get user profile |
-
-#### Update file
-
-```http
-  PUT /api/files/:id
-```
-
-| Access    | Route            | Description             |
-| :-------- | :--------------- | :---------------------- |
-| `private` | `/api/files/:id` | Update file of the user |
 
 ### File Routes
 
