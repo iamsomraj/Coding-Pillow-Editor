@@ -26,7 +26,7 @@ You can either use Coding Pillow Editor now with the help of `live version` or s
 
 For developing this project, I prepared one basic design documentation. I will encourage you to see that first, so that you can get a better idea what to expect from this.
 
-[See Here](https://viewer.diagrams.net/?target=blank&highlight=0000ff&edit=_blank&layers=1&nav=1&title=CodingPillowEditor.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1LB5tqI6q0m9oAXTLk9yQuO8I8cNiopW-%26export%3Ddownload)
+[Design Document - Link](https://viewer.diagrams.net/?target=blank&highlight=0000ff&edit=_blank&layers=1&nav=1&title=CodingPillowEditor.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1LB5tqI6q0m9oAXTLk9yQuO8I8cNiopW-%26export%3Ddownload)
 
 ## Demo
 
