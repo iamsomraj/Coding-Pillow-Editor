@@ -63,6 +63,15 @@ To run this project, you will need to add the following environment variables to
 
 Create these environment variables, save them in Coding Pillow Editor root folder. File name can be `.env`.
 
+### `.env` file will look this
+
+```
+NODE_ENV = development
+PORT = 5000
+MONGO_URI = {MONGODB}://{USER}:{PASSWORD}@{CLUSTER_NAME}.{URI}/{DATABASE}
+JWT_SECRET = {YOUR_SECRET_KEY}
+```
+
 - Start Coding Pillow Editor
 
 ```bash
@@ -170,4 +179,4 @@ These are available API end-points for our server
 
 ## Feedback
 
-If you have any feedback, please reach out to me at iamsomraj@gmail.com
+If you have any feedback or you want to give me some tips related to development, please reach out to me at iamsomraj@gmail.com.
