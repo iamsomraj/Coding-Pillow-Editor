@@ -30,8 +30,8 @@ For developing this project, I prepared one basic design documentation. I will e
 
 ## Demo
 
-[Live Version - Heroku](http://codingpilloweditor.herokuapp.com/)
-[Live Version - AWS](http://http://13.234.32.19:5000/)
+- [Live Version - Heroku](http://codingpilloweditor.herokuapp.com/)
+- [Live Version - AWS](http://http://13.234.32.19:5000/)
 
 ## Install Coding Pillow Editor
 
