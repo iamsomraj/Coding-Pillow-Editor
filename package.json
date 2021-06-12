@@ -5,6 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
+    "setup": "npm install && npm install --prefix client",
     "start": "node server/server",
     "data:import": "node server/seeder",
     "data:destroy": "node server/seeder -d",
