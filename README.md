@@ -22,7 +22,6 @@ You can either use Coding Pillow Editor now with the help of `live version` or s
 
 ![Client Unit Test](https://github.com/iamsomraj/Coding-Pillow-Editor/actions/workflows/unit-tests.yml/badge.svg)
 
-
 ## Documentation
 
 For developing this project, I prepared one basic design documentation. I will encourage you to see that first, so that you can get a better idea what to expect from this.
@@ -32,6 +31,7 @@ For developing this project, I prepared one basic design documentation. I will e
 ## Demo
 
 [Live Version - Heroku](http://codingpilloweditor.herokuapp.com/)
+[Live Version - AWS](http://http://13.234.32.19:5000/)
 
 ## Install Coding Pillow Editor
 
@@ -93,7 +93,6 @@ Coding Pillow Editor currently supports some frontend tests using `jest` & `reac
 **Server:** Node, Express, Mongoose
 
 **Language Used:** Typescript (Client), Javascript (Server)
-
 
 ## Express API Reference
 
