@@ -21,6 +21,7 @@ Select it to experience the editor..
       <>
         <div className="ml-auto">
           <DarkModeToggle
+            className="shadow-none"
             onChange={setIsDarkMode}
             checked={isDarkMode}
             speed={4.0}
