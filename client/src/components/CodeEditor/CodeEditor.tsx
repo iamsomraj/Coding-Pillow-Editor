@@ -23,6 +23,7 @@ Select it to experience the editor..
           <DarkModeToggle
             onChange={setIsDarkMode}
             checked={isDarkMode}
+            speed={4.0}
             size={50}
           />
         </div>
