@@ -63,7 +63,7 @@ To run this project, you will need to add the following environment variables to
 
 Create these environment variables, save them in Coding Pillow Editor root folder. File name can be `.env`.
 
-### `.env` file will look this
+- `.env` file -
 
 ```
 NODE_ENV = development
