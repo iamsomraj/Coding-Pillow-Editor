@@ -1,5 +1,4 @@
 import Editor, { OnChange } from "@monaco-editor/react";
-import 'jest-canvas-mock';
 import { useState } from "react";
 import DarkModeToggle from "react-dark-mode-toggle";
 import { IFile } from "../../types";

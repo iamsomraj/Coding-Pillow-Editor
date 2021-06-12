@@ -83,6 +83,9 @@ Coding Pillow Editor currently supports some frontend tests using `jest` & `reac
 
 **Server:** Node, Express, Mongoose
 
+**Language Used:** Typescript (Client), Javascript (Server)
+
+
 ## Express API Reference
 
 These are available API end-points for our server
