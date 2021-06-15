@@ -31,7 +31,6 @@ For developing this project, I prepared one basic design documentation. I will e
 ## Demo
 
 - [Live Version - Heroku - CI/CD](http://codingpilloweditor.herokuapp.com/)
-- [Live Version - AWS](http://13.234.32.19:5000/)
 
 ## Install Coding Pillow Editor
 
